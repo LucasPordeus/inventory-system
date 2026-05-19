@@ -3,24 +3,57 @@
     <mat-icon>menu</mat-icon>
   </button>
   @if (!isCollapsed) {
-    <h1>Menu</h1>
+    <h2>Menu</h2>
   }
-  
 </mat-toolbar>
+
 <mat-sidenav-container autosize="true">
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
     <mat-nav-list>
       <a mat-list-item>
         <span class="entry"> 
-          <mat-icon>house</mat-icon>
+          <mat-icon>bar_chart_4_bars</mat-icon>
             @if(!isCollapsed){
-                <span>Dashboard</span>
+              <span>Dashboard</span>
+            }
+        </span>
+      </a>
+      <a mat-list-item>
+        <span class="entry"> 
+          <mat-icon>inventory_2</mat-icon>
+            @if(!isCollapsed){
+              <span>Produtos</span>
+            }
+        </span>
+      </a>
+      <a mat-list-item>
+        <span class="entry"> 
+          <mat-icon>warehouse</mat-icon>
+            @if(!isCollapsed){
+              <span>Fornecedores</span>
+            }
+        </span>
+      </a>
+      <a mat-list-item>
+        <span class="entry"> 
+          <mat-icon>compare_arrows</mat-icon>
+            @if(!isCollapsed){
+              <span>Movimentação</span>
+            }
+        </span>
+      </a>
+      <a mat-list-item>
+        <span class="entry"> 
+          <mat-icon>groups</mat-icon>
+            @if(!isCollapsed){
+              <span>Usuários</span>
             }
         </span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <h1>StoCat</h1>
     <h2>Content</h2>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
