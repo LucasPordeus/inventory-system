@@ -1,8 +1,8 @@
-h1 {
+h1{
     padding: 0 1rem;
 }
 
-h2 {padding: 1rem;}
+h2{padding: 1rem;}
 
 mat-toolbar{
     position:fixed;
@@ -11,15 +11,15 @@ mat-toolbar{
     width: max-content;
 }
 
-mat-sidenav-container {
+mat-sidenav-container{
     height:100%;
 }
 
 // Move the content down so that it won't be hidden by the toolbar
-mat-sidenav {
+mat-sidenav{
     padding-top: 3.5rem;
     transition: width 0.3s ease;
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 600px){
       padding-top: 4rem;
     }
 
@@ -34,12 +34,9 @@ mat-sidenav {
 
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav-content{
-    padding-top: 3.5rem;
-    @media screen and (min-width: 600px) {
-        padding-top: 4rem;
-    }
+    padding-left: 1rem;
 }
 
-.expanded {
+.expanded{
     width: 250px;   
 }
