@@ -38,40 +38,27 @@ export class Menu implements OnInit {
     private observer: BreakpointObserver
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void{
 
     this.observer
       .observe(['(max-width: 800px)'])
       .subscribe((screenSize) => {
 
-        if (screenSize.matches) {
-
+        if(screenSize.matches){
           this.isMobile = true;
-
-        } else {
-
+        }else{
           this.isMobile = false;
-
         }
-
       });
-
   }
 
   toggleMenu() {
-
-    if (this.isMobile) {
-
+    if(this.isMobile){
       this.sidenav.toggle();
-      this.isCollapsed = false;
-
-    } else {
-
+      this.isCollapsed = !this.isCollapsed;
+    }else{
       this.sidenav.open();
       this.isCollapsed = !this.isCollapsed;
-
     }
-
   }
-
 }

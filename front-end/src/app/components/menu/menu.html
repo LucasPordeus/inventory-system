@@ -9,11 +9,11 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize="true">
-  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
+  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true">
     <mat-nav-list>
       <a mat-list-item>
         <span class="entry"> 
-          <mat-icon>bar_chart_4_bars</mat-icon>
+          <mat-icon>bar_chart_4_bars</mat-icon>          
             @if(!isCollapsed){
               <span>Dashboard</span>
             }
