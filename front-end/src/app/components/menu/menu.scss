@@ -9,14 +9,31 @@ mat-toolbar{
     top:0;
     z-index: 2;
     width: max-content;
+    background-color: #291470;
+    color: #ffff;
+
+    h1{
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    }
 }
 
 mat-sidenav-container{
     height:100%;
 }
 
+span{
+    color: #fff;
+}
+
+a:hover{
+    background-color: #ffffff10;
+}
+
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav{
+    background-color: #1E104E;
     padding-top: 3.5rem;
     transition: width 0.3s ease;
     @media screen and (min-width: 600px){
@@ -39,4 +56,16 @@ mat-sidenav-content{
 
 .expanded{
     width: 250px;   
+}
+
+.logo{
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    height: 9%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }

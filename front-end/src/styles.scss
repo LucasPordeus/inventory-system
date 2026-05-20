@@ -12,15 +12,7 @@
 
 html {
   height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      density: 0,
-    )
-  );
+
 }
 
 body {
