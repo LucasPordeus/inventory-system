@@ -58,14 +58,32 @@ mat-sidenav-content{
     width: 250px;   
 }
 
-.logo{
+.brand{
     position: absolute;
     bottom: 0;
     color: #fff;
     width: 100%;
-    height: 9%;
-    font-size: 12px;
+    height: 10%;
+    font-size: clamp(7px, 2vw, 10px);;
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+
+.logo{
+    width: 25%;
+    height: 80%;
+    z-index: 3;
+}
+
+.circle{
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff18;
+    filter: blur(3px);
+    position: absolute;
+    border-radius: 50%;
+    right: 7.5%;
+    bottom: 30%;
 }
