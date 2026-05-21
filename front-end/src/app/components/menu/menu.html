@@ -1,15 +1,16 @@
-<mat-toolbar  [ngClass]="!isCollapsed ? 'expanded' : ''">
+<mat-toolbar >
   <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
     <mat-icon>menu</mat-icon>
   </button>
-  @if (!isCollapsed) {
-    <h1>Menu</h1>
-  }
 
+    <div class="brand">
+      <h1 class="title">StoCat</h1>
+      <img src="assets/images/logo.png" class="logo" alt="logo">
+    </div>
 </mat-toolbar>
 
 <mat-sidenav-container autosize="true">
-  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true">
+  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : 'side'" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true">
     <mat-nav-list>
       <a mat-list-item>
         <span class="entry"> 
@@ -52,17 +53,24 @@
         </span>
       </a>
     </mat-nav-list>
-
-    @if(!isCollapsed){
-      <div class="brand">
-        <h1>StoCat</h1>
-        <img src="assets/images/logo.png" class="logo" alt="logo">
-        <div class="circle" class="circle"></div>
-      </div>
-    }
   </mat-sidenav>
+
   <mat-sidenav-content>
     <h2>Content</h2>
+    <div class="grid">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

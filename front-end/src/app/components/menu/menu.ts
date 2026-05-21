@@ -47,7 +47,7 @@ export class Menu implements OnInit {
         if(screenSize.matches){
           this.isMobile = true;
         }else{
-          this.isMobile = false;
+          this.isMobile = true;
         }
       });
   }
@@ -58,7 +58,7 @@ export class Menu implements OnInit {
       this.isCollapsed = !this.isCollapsed;
     }else{
       this.sidenav.open();
-      this.isCollapsed = !this.isCollapsed;
+      this.isCollapsed = this.isCollapsed;
     }
   }
 }

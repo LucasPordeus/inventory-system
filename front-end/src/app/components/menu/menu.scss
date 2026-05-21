@@ -11,6 +11,7 @@ mat-toolbar{
     width: max-content;
     background-color: #291470;
     color: #ffff;
+    width: 100%;
 
     h1{
         font-family: "Press Start 2P", system-ui;
@@ -58,32 +59,35 @@ mat-sidenav-content{
     width: 250px;   
 }
 
-.brand{
-    position: absolute;
-    bottom: 0;
-    color: #fff;
-    width: 100%;
-    height: 10%;
-    font-size: clamp(7px, 2vw, 10px);;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 5%;
-}
-
 .logo{
-    width: 25%;
-    height: 80%;
-    z-index: 3;
+    width: 3%;
+    height: 75%;
+    position: relative;
+    right: 0;
+
+    @media screen and (max-width: 800px) {
+        width: 8%;
+        height: 75%;
+    }
 }
 
-.circle{
-    width: 60px;
-    height: 60px;
-    background-color: #ffffff18;
-    filter: blur(3px);
-    position: absolute;
-    border-radius: 50%;
-    right: 7.5%;
-    bottom: 30%;
+.brand{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.square{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 1rem;
 }
