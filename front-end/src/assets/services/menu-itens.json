@@ -1,0 +1,27 @@
+[
+    {
+        "label": "Dashboard",
+        "icon": "bar_chart_4_bars",
+        "route": "/dashboard"
+    },
+    {
+        "label": "Produtos",
+        "icon": "inventory_2",
+        "route": "/products"
+    },
+    {
+        "label": "Fornecedores",
+        "icon": "warehouse",
+        "route": "/suppliers"
+    },
+    {
+        "label": "Movimentações",
+        "icon": "compare_arrows",
+        "route": "/orders"
+    },
+    {
+        "label": "Usuários",
+        "icon": "groups",
+        "route": "/settings"
+    }
+]

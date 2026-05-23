@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 
+import { MenuService, MenuItem } from '../../services/MenuSevice';
+
 @Component({
   selector: 'app-menu',
   standalone: true,
@@ -34,9 +36,9 @@ export class Menu implements OnInit {
   isMobile = true;
   isCollapsed = true;
 
-  constructor(
-    private observer: BreakpointObserver
-  ) {}
+  constructor(private observer: BreakpointObserver, private menuService: MenuService) {}
+
+  menuItems: MenuItem[] = [];
 
   ngOnInit(): void{
 
@@ -50,6 +52,15 @@ export class Menu implements OnInit {
           this.isMobile = false;
         }
       });
+
+    this.menuService.getMenuItems().subscribe({
+      next: (items) => {
+        this.menuItems = items;
+      },
+      error: (err) => {
+        console.error('Error fetching menu items:', err);
+      }
+    });
   }
 
   toggleMenu() {

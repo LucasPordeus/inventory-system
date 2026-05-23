@@ -1,0 +1,19 @@
+[
+    {
+        "name": "John Doe",
+        "pages": [
+            "Dashboard",
+            "Produtos",
+            "Movimentações"
+        ]
+    },
+    {
+        "name": "Jane Smith",
+        "pages": [
+            "Dashboard",
+            "Produtos",
+            "Usuários",
+            "Fornecedores"
+        ]
+    }
+]
