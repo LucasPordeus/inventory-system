@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { forkJoin } from 'rxjs';
 
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 
-import { MenuService, MenuItem } from '../../services/MenuSevice';
+import { MenuService, MenuItem } from '../../services/menu-service';
+import { UserService, User } from '../../services/user-service';
 
 @Component({
   selector: 'app-menu',
@@ -36,12 +37,12 @@ export class Menu implements OnInit {
   isMobile = true;
   isCollapsed = true;
 
-  constructor(private observer: BreakpointObserver, private menuService: MenuService) {}
+  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
 
   menuItems: MenuItem[] = [];
+  allowedMenuItems: User[] = [];
 
   ngOnInit(): void{
-
     this.observer
       .observe(['(max-width: 800px)'])
       .subscribe((screenSize) => {
@@ -53,14 +54,27 @@ export class Menu implements OnInit {
         }
       });
 
-    this.menuService.getMenuItems().subscribe({
-      next: (items) => {
-        this.menuItems = items;
-      },
-      error: (err) => {
-        console.error('Error fetching menu items:', err);
-      }
-    });
+      
+      this.menuService.getMenuItems().subscribe({
+        next: (items) => {
+          this.menuItems = items;
+        },
+        error: (err) => {
+          console.error('Error fetching menu items:', err);
+        }
+      });
+
+      this.userService.getUsers().subscribe({
+        next: (users) => {
+          this.allowedMenuItems = users;
+          this.allowedMenuItems.forEach(user => {
+            this.menuItems = this.menuItems.filter(menu => user.allowedMenus.includes(menu.label));
+          });
+        },
+        error: (err) => {
+          console.error('Error fetching users:', err);
+        }
+      });
   }
 
   toggleMenu() {
@@ -72,4 +86,5 @@ export class Menu implements OnInit {
       this.isCollapsed = !this.isCollapsed;
     }
   }
+
 }
