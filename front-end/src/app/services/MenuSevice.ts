@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 export interface MenuItem {
   label: string;
-  icon?: string;
+  icon: string;
   route: string;
 }
 
