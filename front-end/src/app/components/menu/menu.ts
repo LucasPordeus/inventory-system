@@ -61,7 +61,6 @@ export class Menu implements OnInit {
         },
         error: (err) => {
           console.error('Error fetching menu items:', err);
-          console.log(this.menuItems);
           this.errorMessageMenu = 'Erro ao carregar os itens do menu';
         }
       });

@@ -16,9 +16,10 @@
 <mat-sidenav-container autosize="true">
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : 'side'" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true" [disableClose]="true">
     <mat-nav-list>
-      @if(menuItems.length === 0){
+      @if(menuItems.length === 0 && !isCollapsed){
         <div class="error_message_menu_container">
           <span class="error_message_menu">{{ errorMessageMenu }}</span>
+          <img src="assets/gifs/banana-cat-crying.gif" class="banana_cat" alt="banana cat criying">
         </div>
       }
       @for(item of menuItems; track $index){
