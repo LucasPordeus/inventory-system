@@ -40,7 +40,7 @@ a:hover{
 mat-sidenav{
     background-color: #1E104E;
     padding-top: 3.5rem;
-    transition: width 0.9s ease;
+    transition: width 0.15s ease;
     @media screen and (min-width: 600px){
       padding-top: 4rem;
     }
@@ -59,9 +59,15 @@ mat-sidenav-content{
     padding-left: 1rem;
     top: 3.5rem;
 }
+::ng-deep .mat-drawer-transition .mat-drawer{
+    transition: transform 0.6s ease !important;
+}
+::ng-deep .mat-drawer-transition .mat-drawer-content{
+    transition: margin 0.6s ease !important;
+}
 
 .expanded{
-    width: 250px;   
+    width: 250px;
 }
 
 .logo{
