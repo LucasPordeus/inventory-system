@@ -36,6 +36,7 @@ a:hover{
     background-color: #ffffff10;
 }
 
+
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav{
     background-color: #1E104E;
@@ -119,4 +120,23 @@ mat-sidenav-content{
 
 .profile img:hover{
     filter:  drop-shadow(2px 2px 2px #ffffff8e);
+}
+
+.error_message_menu_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.error_message_menu{
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    width: 70%;
+    background-color: rgba(172, 0, 0, 0.925);
+    border-radius: 15px;
+    padding: 4%;
+    text-align: center;
+    margin-top: 5%;
 }

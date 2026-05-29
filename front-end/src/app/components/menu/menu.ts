@@ -36,11 +36,11 @@ export class Menu implements OnInit {
 
   isMobile = true;
   isCollapsed = true;
-
-  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
-
+  errorMessageMenu = '';
   menuItems: MenuItem[] = [];
   allowedMenuItems: User[] = [];
+
+  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
 
   ngOnInit(): void{
     this.observer
@@ -61,6 +61,8 @@ export class Menu implements OnInit {
         },
         error: (err) => {
           console.error('Error fetching menu items:', err);
+          console.log(this.menuItems);
+          this.errorMessageMenu = 'Erro ao carregar os itens do menu';
         }
       });
 

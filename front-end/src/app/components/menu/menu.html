@@ -16,7 +16,12 @@
 <mat-sidenav-container autosize="true">
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : 'side'" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true" [disableClose]="true">
     <mat-nav-list>
-      @for (item of menuItems; track $index) {
+      @if(menuItems.length === 0){
+        <div class="error_message_menu_container">
+          <span class="error_message_menu">{{ errorMessageMenu }}</span>
+        </div>
+      }
+      @for(item of menuItems; track $index){
         <a mat-list-item>
           <span class="entry"> 
             <mat-icon>{{item.icon}}</mat-icon>          
