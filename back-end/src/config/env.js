@@ -37,6 +37,8 @@ const env = Object.freeze({
     rateLimitMaxRequests: Number(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
   },
 
+  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+
   admin: {
     email: process.env.ADMIN_EMAIL || 'admin@admin.com',
     password: process.env.ADMIN_PASSWORD || 'Admin@123'

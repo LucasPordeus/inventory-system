@@ -18,8 +18,8 @@ const seed = async () => {
     await client.query('BEGIN');
 
     const { rows: [admin] } = await client.query(
-      `INSERT INTO users (name, email, password, salt)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO users (name, email, password, salt, role)
+       VALUES ($1, LOWER(TRIM($2)), $3, $4, 'admin')
        RETURNING user_id`,
       ['Admin', env.admin.email, hashedPassword, salt]
     );

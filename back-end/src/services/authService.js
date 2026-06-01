@@ -16,7 +16,7 @@ class AuthService {
       throw new AppError('Invalid credentials', 401);
     }
 
-    const token = JwtHelper.sign({ userId: user.user_id, email: user.email });
+    const token = JwtHelper.sign({ userId: user.user_id, email: user.email, role: user.role });
     const screens = await userScreenRepository.findScreensByUserId(user.user_id);
 
     return {

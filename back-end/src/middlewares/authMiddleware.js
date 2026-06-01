@@ -11,7 +11,7 @@ const authMiddleware = (req, _res, next) => {
   const token = authHeader.split(' ')[1];
   const payload = JwtHelper.verify(token);
 
-  req.user = { userId: payload.userId, email: payload.email };
+  req.user = { userId: payload.userId, email: payload.email, role: payload.role };
   return next();
 };
 

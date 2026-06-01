@@ -1,19 +1,19 @@
 const { query } = require('../config/database');
 
 class UserRepository {
-  async create({ name, email, password, salt }) {
+  async create({ name, email, password, salt, role = 'user' }) {
     const sql = `
-      INSERT INTO users (name, email, password, salt)
-      VALUES ($1, $2, $3, $4)
-      RETURNING user_id, name, email, created_at
+      INSERT INTO users (name, email, password, salt, role)
+      VALUES ($1, LOWER(TRIM($2)), $3, $4, $5)
+      RETURNING user_id, name, email, role, created_at
     `;
-    const { rows } = await query(sql, [name, email, password, salt]);
+    const { rows } = await query(sql, [name, email, password, salt, role]);
     return rows[0];
   }
 
   async findById(userId) {
     const sql = `
-      SELECT user_id, name, email, created_at
+      SELECT user_id, name, email, role, created_at
       FROM users
       WHERE user_id = $1
     `;
@@ -23,9 +23,9 @@ class UserRepository {
 
   async findByEmail(email) {
     const sql = `
-      SELECT user_id, name, email, password, salt
+      SELECT user_id, name, email, password, salt, role
       FROM users
-      WHERE email = $1
+      WHERE email = LOWER(TRIM($1))
     `;
     const { rows } = await query(sql, [email]);
     return rows[0] || null;
@@ -33,7 +33,7 @@ class UserRepository {
 
   async findAll() {
     const sql = `
-      SELECT user_id, name, email, created_at
+      SELECT user_id, name, email, role, created_at
       FROM users
       ORDER BY user_id ASC
     `;
@@ -44,11 +44,11 @@ class UserRepository {
   async update(userId, { name, email }) {
     const sql = `
       UPDATE users
-         SET name = COALESCE($2, name),
-             email = COALESCE($3, email),
+         SET name       = COALESCE($2, name),
+             email      = COALESCE(LOWER(TRIM($3)), email),
              updated_at = NOW()
        WHERE user_id = $1
-       RETURNING user_id, name, email, updated_at
+       RETURNING user_id, name, email, role, updated_at
     `;
     const { rows } = await query(sql, [userId, name, email]);
     return rows[0] || null;
