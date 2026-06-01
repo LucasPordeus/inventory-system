@@ -4,8 +4,10 @@ const cors = require('cors');
 const compression = require('compression');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const swaggerUi = require('swagger-ui-express');
 
-const env = require('./src/config/env');
+const env = require('./config/env');
+const swaggerSpec = require('./config/swagger');
 const routes = require('./routes');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const AppError = require('./errors/appError');
@@ -34,6 +36,7 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
+app.use('/api/docs', helmet({ contentSecurityPolicy: false }), swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api', routes);
 
 app.use((req, _res, next) => next(new AppError(`Route ${req.originalUrl} not found`, 404)));
