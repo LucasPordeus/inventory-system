@@ -35,6 +35,11 @@ const env = Object.freeze({
     bcryptSaltRounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 12,
     rateLimitWindowMs: Number(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
     rateLimitMaxRequests: Number(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
+  },
+
+  admin: {
+    email: process.env.ADMIN_EMAIL || 'admin@admin.com',
+    password: process.env.ADMIN_PASSWORD || 'Admin@123'
   }
 });
 

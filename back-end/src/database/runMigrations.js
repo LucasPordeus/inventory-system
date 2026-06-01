@@ -13,10 +13,15 @@ const runMigrations = async () => {
   }
 
   console.log('Migrations executed successfully');
-  await pool.end();
 };
 
-runMigrations().catch((error) => {
-  console.error('Migration error:', error);
-  process.exit(1);
-});
+module.exports = runMigrations;
+
+if (require.main === module) {
+  runMigrations()
+    .then(() => pool.end())
+    .catch((error) => {
+      console.error('Migration error:', error);
+      process.exit(1);
+    });
+}
