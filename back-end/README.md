@@ -1,278 +1,237 @@
-[![Express Logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)](https://expressjs.com/)
+# Inventory System — Back-end
 
-**Fast, unopinionated, minimalist web framework for [Node.js](https://nodejs.org).**
+API REST para gerenciamento de estoque, desenvolvida com Node.js, Express 5 e PostgreSQL.
 
-**This project has a [Code of Conduct].**
+## Tecnologias
 
-## Table of contents
+- **Node.js 20** + **Express 5**
+- **PostgreSQL 16**
+- **JWT** para autenticação
+- **bcrypt** para hash de senhas
+- **Joi** para validação de entrada
+- **Swagger UI** para documentação interativa
 
-- [Table of contents](#table-of-contents)
-- [Installation](#installation)
-- [Features](#features)
-- [Docs \& Community](#docs--community)
-- [Quick Start](#quick-start)
-- [Philosophy](#philosophy)
-- [Examples](#examples)
-- [Contributing](#contributing)
-  - [Security Issues](#security-issues)
-  - [Running Tests](#running-tests)
-- [Current project team members](#current-project-team-members)
-  - [TC (Technical Committee)](#tc-technical-committee)
-    - [TC emeriti members](#tc-emeriti-members)
-  - [Triagers](#triagers)
-    - [Emeritus Triagers](#emeritus-triagers)
-- [License](#license)
+---
 
+## Pré-requisitos
 
-[![NPM Version][npm-version-image]][npm-url]
-[![NPM Downloads][npm-downloads-image]][npm-downloads-url]
-[![Linux Build][github-actions-ci-image]][github-actions-ci-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-[![OpenSSF Scorecard Badge][ossf-scorecard-badge]][ossf-scorecard-visualizer]
+| Opção | Requisitos |
+|---|---|
+| Docker | Docker + Docker Compose |
+| Local | Node.js 20+, npm, PostgreSQL 16+ |
 
+---
 
-```js
-import express from 'express'
+## Variáveis de ambiente
 
-const app = express()
+Copie o arquivo `.env` e ajuste os valores antes de subir o projeto:
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+```env
+# Aplicação
+NODE_ENV=development
+PORT=3000
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
-})
+# Banco de dados
+DB_HOST=localhost        # usar "postgres" no Docker
+DB_PORT=5432
+DB_NAME=inventory_db
+DB_USER=inventory_user
+DB_PASSWORD=sua_senha_aqui
+
+# JWT
+JWT_SECRET=uma_string_longa_e_aleatoria
+JWT_EXPIRATION=1h
+
+# Segurança
+BCRYPT_SALT_ROUNDS=12
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Usuário admin padrão (criado automaticamente na primeira inicialização)
+ADMIN_EMAIL=admin@admin.com
+ADMIN_PASSWORD=Admin@123
 ```
 
-## Installation
+> **Atenção:** troque `DB_PASSWORD`, `JWT_SECRET` e `ADMIN_PASSWORD` por valores seguros antes de usar em produção.
 
-This is a [Node.js](https://nodejs.org/en/) module available through the
-[npm registry](https://www.npmjs.com/).
+---
 
-Before installing, [download and install Node.js](https://nodejs.org/en/download/).
-Node.js 18 or higher is required.
+## Rodando com Docker
 
-If this is a brand new project, make sure to create a `package.json` first with
-the [`npm init` command](https://docs.npmjs.com/creating-a-package-json-file).
+A forma mais simples. Sobe a API e o banco juntos, sem precisar instalar nada além do Docker.
 
-Installation is done using the
-[`npm install` command](https://docs.npmjs.com/downloading-and-installing-packages-locally):
+**1. Configure o `.env`**
+
+Edite o arquivo `.env` na raiz do projeto e troque os valores de placeholder:
 
 ```bash
-npm install express
+DB_PASSWORD=sua_senha_forte
+JWT_SECRET=sua_chave_jwt_longa
 ```
 
-Follow [our installing guide](https://expressjs.com/en/starter/installing.html)
-for more information.
-
-## Features
-
-  * Robust routing
-  * Focus on high performance
-  * Super-high test coverage
-  * HTTP helpers (redirection, caching, etc)
-  * View system supporting 14+ template engines
-  * Content negotiation
-  * Executable for generating applications quickly
-
-## Docs & Community
-
-  * [Website and Documentation](https://expressjs.com/) - [[website repo](https://github.com/expressjs/expressjs.com)]
-  * [GitHub Organization](https://github.com/expressjs) for Official Middleware & Modules
-  * [Github Discussions](https://github.com/expressjs/discussions) for discussion on the development and usage of Express
-
-**PROTIP** Be sure to read the [migration guide to v5](https://expressjs.com/en/guide/migrating-5)
-
-## Quick Start
-
-  The quickest way to get started with express is to utilize the executable [`express(1)`](https://github.com/expressjs/generator) to generate an application as shown below:
-
-  Install the executable. The executable's major version will match Express's:
+**2. Suba os containers**
 
 ```bash
-npm install -g express-generator@4
+docker-compose up --build
 ```
 
-  Create the app:
+**3. Aguarde os logs de inicialização**
+
+```
+inventory_postgres  | database system is ready to accept connections
+inventory_api       | Running migration: 001_init.sql
+inventory_api       | Migrations executed successfully
+inventory_api       | Seed: admin user created — email: admin@admin.com
+inventory_api       | Server running on port 3000 [development]
+```
+
+**4. Acesse a API**
+
+- Base URL: `http://localhost:3000/api`
+- Documentação: `http://localhost:3000/api/docs`
+
+**Para parar:**
 
 ```bash
-express /tmp/foo && cd /tmp/foo
+docker-compose down
 ```
 
-  Install dependencies:
+**Para parar e remover os dados do banco:**
+
+```bash
+docker-compose down -v
+```
+
+---
+
+## Rodando localmente
+
+Requer PostgreSQL rodando na sua máquina.
+
+**1. Instale as dependências**
 
 ```bash
 npm install
 ```
 
-  Start the server:
+**2. Configure o banco de dados**
+
+Crie o banco e o usuário no PostgreSQL:
+
+```bash
+psql -U postgres -c "CREATE DATABASE inventory_db;"
+psql -U postgres -c "CREATE USER inventory_user WITH PASSWORD 'sua_senha';"
+psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE inventory_db TO inventory_user;"
+```
+
+**3. Configure o `.env`**
+
+Edite o arquivo `.env` e certifique-se de que `DB_HOST=localhost`:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=inventory_db
+DB_USER=inventory_user
+DB_PASSWORD=sua_senha
+JWT_SECRET=sua_chave_jwt_longa
+```
+
+**4. Suba o servidor**
 
 ```bash
 npm start
 ```
 
-  View the website at: http://localhost:3000
+Na primeira execução, as migrations e o seed rodam automaticamente:
 
-## Philosophy
-
-  The Express philosophy is to provide small, robust tooling for HTTP servers, making
-  it a great solution for single page applications, websites, hybrids, or public
-  HTTP APIs.
-
-  Express does not force you to use any specific ORM or template engine. With support for over
-  14 template engines via [@ladjs/consolidate](https://github.com/ladjs/consolidate),
-  you can quickly craft your perfect framework.
-
-## Examples
-
-  To view the examples, clone the Express repository:
-
-```bash
-git clone https://github.com/expressjs/express.git --depth 1 && cd express
+```
+Running migration: 001_init.sql
+Migrations executed successfully
+Seed: admin user created — email: admin@admin.com
+Server running on port 3000 [development]
 ```
 
-  Then install the dependencies:
+**5. Acesse a API**
 
-```bash
-npm install
+- Base URL: `http://localhost:3000/api`
+- Documentação: `http://localhost:3000/api/docs`
+
+---
+
+## Usuário admin padrão
+
+Na primeira inicialização, um usuário administrador é criado automaticamente com acesso a todas as telas do sistema.
+
+| Campo | Valor padrão |
+|---|---|
+| E-mail | `admin@admin.com` |
+| Senha | `Admin@123` |
+
+As credenciais podem ser alteradas nas variáveis `ADMIN_EMAIL` e `ADMIN_PASSWORD` do `.env` antes da primeira execução.
+
+---
+
+## Endpoints
+
+Todos os endpoints retornam JSON. Os protegidos exigem o header:
+
+```
+Authorization: Bearer <token>
 ```
 
-  Then run whichever example you want:
+O token é obtido no endpoint de login.
 
-```bash
-node examples/content-negotiation
+### Health
+
+| Método | Rota | Auth | Descrição |
+|---|---|---|---|
+| GET | `/api/health` | — | Status da API |
+
+### Auth
+
+| Método | Rota | Auth | Descrição |
+|---|---|---|---|
+| POST | `/api/auth/login` | — | Login — retorna token, usuário e telas |
+
+### Usuários
+
+| Método | Rota | Auth | Descrição |
+|---|---|---|---|
+| POST | `/api/users` | — | Criar usuário |
+| GET | `/api/users/me` | Sim | Usuário autenticado + suas telas |
+| GET | `/api/users` | Sim | Listar todos os usuários |
+| GET | `/api/users/:id` | Sim | Buscar usuário por ID |
+| PUT | `/api/users/:id` | Sim | Atualizar nome/e-mail |
+| DELETE | `/api/users/:id` | Sim | Deletar usuário |
+| GET | `/api/users/:id/screens` | Sim | Listar telas do usuário |
+| PUT | `/api/users/:id/screens` | Sim | Substituir telas do usuário |
+
+### Telas
+
+| Método | Rota | Auth | Descrição |
+|---|---|---|---|
+| GET | `/api/screens` | Sim | Listar todas as telas |
+| POST | `/api/screens` | Sim | Criar tela |
+| GET | `/api/screens/:id` | Sim | Buscar tela por ID |
+| PUT | `/api/screens/:id` | Sim | Atualizar tela |
+| DELETE | `/api/screens/:id` | Sim | Deletar tela |
+
+---
+
+## Documentação interativa
+
+Acesse o Swagger UI para explorar e testar todos os endpoints:
+
+```
+http://localhost:3000/api/docs
 ```
 
-## Contributing
+---
 
-The Express.js project welcomes all constructive contributions. Contributions take many forms,
-from code for bug fixes and enhancements, to additions and fixes to documentation, additional
-tests, triaging incoming pull requests and issues, and more!
+## Scripts disponíveis
 
-See the [Contributing Guide] for more technical details on contributing.
-
-### Security Issues
-
-If you discover a security vulnerability in Express, please see [Security Policies and Procedures](https://github.com/expressjs/express/security/policy).
-
-### Running Tests
-
-To run the test suite, first install the dependencies:
-
-```bash
-npm install
-```
-
-Then run `npm test`:
-
-```bash
-npm test
-```
-
-## Current project team members
-
-For information about the governance of the express.js project, see [GOVERNANCE.md](https://github.com/expressjs/discussions/blob/HEAD/docs/GOVERNANCE.md).
-
-The original author of Express is [TJ Holowaychuk](https://github.com/tj)
-
-[List of all contributors](https://github.com/expressjs/express/graphs/contributors)
-
-### TC (Technical Committee)
-
-* [UlisesGascon](https://github.com/UlisesGascon) - **Ulises Gascón** (he/him)
-* [jonchurch](https://github.com/jonchurch) - **Jon Church**
-* [wesleytodd](https://github.com/wesleytodd) - **Wes Todd**
-* [LinusU](https://github.com/LinusU) - **Linus Unnebäck**
-* [blakeembrey](https://github.com/blakeembrey) - **Blake Embrey**
-* [sheplu](https://github.com/sheplu) - **Jean Burellier**
-* [crandmck](https://github.com/crandmck) - **Rand McKinney**
-* [ctcpip](https://github.com/ctcpip) - **Chris de Almeida**
-
-<details>
-<summary>TC emeriti members</summary>
-
-#### TC emeriti members
-
-  * [dougwilson](https://github.com/dougwilson) - **Douglas Wilson**
-  * [hacksparrow](https://github.com/hacksparrow) - **Hage Yaapa**
-  * [jonathanong](https://github.com/jonathanong) - **jongleberry**
-  * [niftylettuce](https://github.com/niftylettuce) - **niftylettuce**
-  * [troygoode](https://github.com/troygoode) - **Troy Goode**
-</details>
-
-
-### Triagers
-
-* [aravindvnair99](https://github.com/aravindvnair99) - **Aravind Nair**
-* [bjohansebas](https://github.com/bjohansebas) - **Sebastian Beltran**
-* [carpasse](https://github.com/carpasse) - **Carlos Serrano**
-* [CBID2](https://github.com/CBID2) - **Christine Belzie**
-* [UlisesGascon](https://github.com/UlisesGascon) - **Ulises Gascón** (he/him)
-* [IamLizu](https://github.com/IamLizu) - **S M Mahmudul Hasan** (he/him)
-* [Phillip9587](https://github.com/Phillip9587) - **Phillip Barta**
-* [efekrskl](https://github.com/efekrskl) - **Efe Karasakal**
-* [rxmarbles](https://github.com/rxmarbles) - **Rick Markins** (he/him)
-* [krzysdz](https://github.com/krzysdz)
-* [GroophyLifefor](https://github.com/GroophyLifefor) - **Murat Kirazkaya**
-
-<details>
-<summary>Triagers emeriti members</summary>
-
-#### Emeritus Triagers
-
-  * [AuggieH](https://github.com/AuggieH) - **Auggie Hudak**
-  * [G-Rath](https://github.com/G-Rath) - **Gareth Jones**
-  * [MohammadXroid](https://github.com/MohammadXroid) - **Mohammad Ayashi**
-  * [NawafSwe](https://github.com/NawafSwe) - **Nawaf Alsharqi**
-  * [NotMoni](https://github.com/NotMoni) - **Moni**
-  * [VigneshMurugan](https://github.com/VigneshMurugan) - **Vignesh Murugan**
-  * [davidmashe](https://github.com/davidmashe) - **David Ashe**
-  * [digitaIfabric](https://github.com/digitaIfabric) - **David**
-  * [e-l-i-s-e](https://github.com/e-l-i-s-e) - **Elise Bonner**
-  * [fed135](https://github.com/fed135) - **Frederic Charette**
-  * [firmanJS](https://github.com/firmanJS) - **Firman Abdul Hakim**
-  * [getspooky](https://github.com/getspooky) - **Yasser Ameur**
-  * [ghinks](https://github.com/ghinks) - **Glenn**
-  * [ghousemohamed](https://github.com/ghousemohamed) - **Ghouse Mohamed**
-  * [gireeshpunathil](https://github.com/gireeshpunathil) - **Gireesh Punathil**
-  * [jake32321](https://github.com/jake32321) - **Jake Reed**
-  * [jonchurch](https://github.com/jonchurch) - **Jon Church**
-  * [lekanikotun](https://github.com/lekanikotun) - **Troy Goode**
-  * [marsonya](https://github.com/marsonya) - **Lekan Ikotun**
-  * [mastermatt](https://github.com/mastermatt) - **Matt R. Wilson**
-  * [maxakuru](https://github.com/maxakuru) - **Max Edell**
-  * [mlrawlings](https://github.com/mlrawlings) - **Michael Rawlings**
-  * [rodion-arr](https://github.com/rodion-arr) - **Rodion Abdurakhimov**
-  * [sheplu](https://github.com/sheplu) - **Jean Burellier**
-  * [tarunyadav1](https://github.com/tarunyadav1) - **Tarun yadav**
-  * [tunniclm](https://github.com/tunniclm) - **Mike Tunnicliffe**
-  * [enyoghasim](https://github.com/enyoghasim) - **David Enyoghasim**
-  * [0ss](https://github.com/0ss) - **Salah**
-  * [ejcheng](https://github.com/ejcheng)- **Eric Cheng** (he/him)
-  * [dakshkhetan](https://github.com/dakshkhetan) - **Daksh Khetan** (he/him)
-  * [lucasraziel](https://github.com/lucasraziel) - **Lucas Soares Do Rego**
-  * [mertcanaltin](https://github.com/mertcanaltin) - **Mert Can Altin**
-  * [dpopp07](https://github.com/dpopp07) - **Dustin Popp**
-  * [Sushmeet](https://github.com/Sushmeet) - **Sushmeet Sunger**
-  * [3imed-jaberi](https://github.com/3imed-jaberi) - **Imed Jaberi**
-
-</details>
-
-
-## License
-
-  [MIT](LICENSE)
-
-[coveralls-image]: https://img.shields.io/coverallsCoverage/github/expressjs/express?branch=master
-[coveralls-url]: https://coveralls.io/r/expressjs/express?branch=master
-[github-actions-ci-image]: https://img.shields.io/github/actions/workflow/status/expressjs/express/ci.yml?branch=master&label=ci
-[github-actions-ci-url]: https://github.com/expressjs/express/actions/workflows/ci.yml
-[npm-downloads-image]: https://img.shields.io/npm/dm/express
-[npm-downloads-url]: https://npmcharts.com/compare/express?minimal=true
-[npm-url]: https://npmjs.org/package/express
-[npm-version-image]: https://img.shields.io/npm/v/express
-[ossf-scorecard-badge]: https://api.scorecard.dev/projects/github.com/expressjs/express/badge
-[ossf-scorecard-visualizer]: https://ossf.github.io/scorecard-visualizer/#/projects/github.com/expressjs/express
-[Code of Conduct]: https://github.com/expressjs/.github/blob/HEAD/CODE_OF_CONDUCT.md
-[Contributing Guide]: https://github.com/expressjs/.github/blob/HEAD/CONTRIBUTING.md
+| Comando | Descrição |
+|---|---|
+| `npm start` | Sobe o servidor (roda migrations + seed automaticamente) |
+| `npm run migrate` | Executa as migrations manualmente |
