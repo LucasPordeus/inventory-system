@@ -3,19 +3,33 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 export interface User {
-  name: string;
-  allowedMenus: string[];
+  token: string;
+  user: {
+    user_id: number;
+    name: string;
+    email: string;
+  };
+  screens: {
+    screen_id: number;
+    name: string;
+    icon: string;
+    redirectUrl: string;
+  }[];
 }
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  private apiUrl = "assets/services/users.json";
+  
+  private apiUrl = "http://localhost:3000/api/auth/login";
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(this.apiUrl, { 
+      email, 
+      password 
+    });
   }
 }

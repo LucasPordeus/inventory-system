@@ -2,7 +2,6 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { forkJoin } from 'rxjs';
 
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,8 +38,11 @@ export class Menu implements OnInit {
   errorMessageMenu = '';
   menuItems: MenuItem[] = [];
   allowedMenuItems: User[] = [];
+  email: string = '';
+  password: string = '';
 
   constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
+
 
   ngOnInit(): void{
     this.observer
@@ -64,18 +66,8 @@ export class Menu implements OnInit {
           this.errorMessageMenu = 'Erro ao carregar os itens do menu';
         }
       });
+      
 
-      this.userService.getUsers().subscribe({
-        next: (users) => {
-          this.allowedMenuItems = users;
-          this.allowedMenuItems.forEach(user => {
-            this.menuItems = this.menuItems.filter(menu => user.allowedMenus.includes(menu.label));
-          });
-        },
-        error: (err) => {
-          console.error('Error fetching users:', err);
-        }
-      });
   }
 
   toggleMenu() {
