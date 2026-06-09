@@ -18,6 +18,21 @@
     />
   </head>
   <body>
+    <!-- VLibras Accessibility -->
     <app-root></app-root>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!-- Elfsight Accessibility -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-26acf3f8-7b7a-4ebd-bf1a-7017e3ddb0f2" data-elfsight-app-lazy></div>
   </body>
 </html>

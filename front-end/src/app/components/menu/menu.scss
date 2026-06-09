@@ -36,6 +36,10 @@ a:hover{
     background-color: #ffffff10;
 }
 
+mat-nav-list a:hover{
+    background-color: #ffffff48;   
+}
+
 
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav{
@@ -72,6 +76,7 @@ mat-sidenav-content{
 }
 
 .logo{
+    background-color: none;
     width: 4%;
     position: relative;
     right: 0;
@@ -85,6 +90,7 @@ mat-sidenav-content{
     display: flex;
     width: 100%;
     align-items: center;
+    background-color: none;
 }
 
 .square{
@@ -119,7 +125,7 @@ mat-sidenav-content{
 }
 
 .profile img:hover{
-    filter:  drop-shadow(2px 2px 2px #ffffff8e);
+    filter:  drop-shadow(2px 2px 2px #ffffffa7);
 }
 
 .error_message_menu_container{
@@ -134,7 +140,7 @@ mat-sidenav-content{
     font-weight: bold;
     position: absolute;
     width: 70%;
-    background-color: rgba(172, 0, 0, 0.925);
+    background-color: #ac0000ec;
     border-radius: 15px;
     padding: 4%;
     text-align: center;

@@ -1,18 +1,23 @@
-<mat-toolbar >
-  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
+<header>
+  <mat-toolbar >
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-  <div class="brand">
-    <h1 class="title">StoCat</h1>
-    <img src="assets/images/logo.png" class="logo" alt="logo">
-  </div>
+    <div class="brand">
+      <h1 class="title">StoCat</h1>
+      <img src="assets/images/logo.png" class="logo" alt="Icone do sistema">
+    </div>
 
-  <div class="profile">
-    <img src="assets/images/person-profile.png" class="profile_image" alt="profile_image">
-  </div>
-</mat-toolbar>
+    <div class="profile">
+      <img src="assets/images/person-profile.png" class="profile_image" alt="Perfil do usuário">
+    </div>
+  </mat-toolbar>
+</header>
 
+<nav>
+  
+</nav>
 <mat-sidenav-container autosize="true">
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : 'side'" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true" [disableClose]="true">
     <mat-nav-list>
@@ -27,7 +32,7 @@
           <span class="entry"> 
             <mat-icon>{{item.icon}}</mat-icon>          
               @if(!isCollapsed){
-                <span>{{item.label}}</span>
+                <p>{{item.label}}</p>
               }
           </span>
         </a>
@@ -55,3 +60,4 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

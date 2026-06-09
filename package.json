@@ -1,0 +1,22 @@
+{
+  "name": "inventory-system",
+  "version": "1.0.0",
+  "description": "Powered by Lucas & Milena",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startAll": "cd front-end && ng serve --port 5173 & cd .. && cd back-end && docker-compose up --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasPordeus/inventory-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LucasPordeus/inventory-system/issues"
+  },
+  "homepage": "https://github.com/LucasPordeus/inventory-system#readme"
+}
