@@ -15,22 +15,20 @@
   </mat-toolbar>
 </header>
 
-<nav>
-  
-</nav>
 <mat-sidenav-container autosize="true">
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : 'side'" [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? false : true" [disableClose]="true">
-    <mat-nav-list>
+    <nav aria-label="Menu principal">
+      <mat-nav-list>
       @if(menuItems.length === 0 && !isCollapsed){
-        <div class="error_message_menu_container">
+        <section class="error_message_menu_container">
           <span class="error_message_menu">{{ errorMessageMenu }}</span>
           <img src="assets/gifs/banana-cat-crying.gif" class="banana_cat" alt="banana cat criying">
-        </div>
+        </section>
       }
       @for(item of menuItems; track $index){
-        <a mat-list-item>
+        <a mat-list-item href="{{item.route}}">
           <span class="entry"> 
-            <mat-icon>{{item.icon}}</mat-icon>          
+            <mat-icon aria-label="{{item.label}}">{{item.icon}}</mat-icon>          
               @if(!isCollapsed){
                 <p>{{item.label}}</p>
               }
@@ -38,26 +36,28 @@
         </a>
       }
     </mat-nav-list>
+    </nav>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <h2>Content</h2>
-    <div class="grid">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-
-    <router-outlet></router-outlet>
+    <main>
+      <h2>Content</h2>
+      <div class="grid">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
+      <!-- <app-product></app-product> -->
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

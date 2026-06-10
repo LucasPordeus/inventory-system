@@ -2,17 +2,17 @@
     {
         "label": "Dashboard",
         "icon": "bar_chart_4_bars",
-        "route": "/dashboard"
+        "route": "/menu"
     },
     {
         "label": "Produtos",
         "icon": "inventory_2",
-        "route": "/products"
+        "route": "http://google.com.br"
     },
     {
         "label": "Fornecedores",
         "icon": "warehouse",
-        "route": "/suppliers"
+        "route": "http://youtube.com.br"
     },
     {
         "label": "Movimentações",

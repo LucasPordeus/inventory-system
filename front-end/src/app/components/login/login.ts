@@ -26,7 +26,7 @@ export class Login implements OnInit {
       next: (user: User) => {
         console.log('Logged in user:', user);
         console.log('Allowed menu items for user:', user.screens);
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/app']);
       },
       error: (err: any) => {
         console.error('Login error:', err);
