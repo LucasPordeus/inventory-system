@@ -20,8 +20,12 @@ mat-toolbar{
     }
 }
 
+//VER ESSE ABSOLUTE
 mat-sidenav-container{
     height: 100%;
+    width: fit-content;
+    position: fixed;
+    top: 0;
 
     @media screen and (max-width: 800px){
         width: 80vh;
@@ -44,7 +48,6 @@ mat-nav-list a:hover{
 // Move the content down so that it won't be hidden by the toolbar
 mat-sidenav{
     background-color: #1E104E;
-    padding-top: 3.5rem;
     transition: width 0.15s ease;
     @media screen and (min-width: 600px){
       padding-top: 4rem;
@@ -92,21 +95,6 @@ mat-sidenav-content{
     align-items: center;
     background-color: none;
 }
-
-.square{
-    width: 100px;
-    height: 100px;
-    background-color: aqua;
-}
-
-.grid{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
-    margin-top: 1rem;
-    place-items: center;
-}
-
 
 .profile_image{
     width: 14%;

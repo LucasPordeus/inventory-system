@@ -11,4 +11,7 @@ import { Home } from "../home/home";
   templateUrl: "./layout.html",
   styleUrl: "./layout.scss",
 })
-export class Layout {}
+export class Layout {
+
+  
+}

@@ -43,7 +43,7 @@ export class Menu implements OnInit {
 
   constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
 
-  ngOnInit(): void{
+  ngOnInit() {
     this.observer
       .observe(['(max-width: 800px)'])
       .subscribe((screenSize) => {
@@ -55,7 +55,7 @@ export class Menu implements OnInit {
         }
       });
 
-      
+
       this.menuService.getMenuItems().subscribe({
         next: (items) => {
           this.menuItems = items;

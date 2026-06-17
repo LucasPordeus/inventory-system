@@ -1,0 +1,15 @@
+
+
+.square{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 1rem;
+    place-items: center;
+}
