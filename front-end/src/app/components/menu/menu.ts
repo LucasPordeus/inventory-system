@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,7 +42,7 @@ export class Menu implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService) {}
+  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.observer
@@ -77,6 +78,11 @@ export class Menu implements OnInit {
       this.sidenav.open();
       this.isCollapsed = !this.isCollapsed;
     }
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
 }

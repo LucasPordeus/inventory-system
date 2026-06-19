@@ -23,9 +23,6 @@ export class Login{
       next: (user: User) => {
         localStorage.setItem('token', user.token);
         this.AuthService.setLoggedIn(true);
-
-        console.log('Logged in user:', user);
-        console.log('Allowed menu items for user:', user.screens);
         
         this.router.navigate(['/products']);
       },
