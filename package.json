@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startAll": "cd front-end && ng serve --port 5173 & cd .. && cd back-end && docker-compose up --build"
+    "frontend": "cd front-end && ng serve --port 5173",
+    "backend": "cd back-end && docker-compose up --build",
+    "startAll": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/LucasPordeus/inventory-system/issues"
   },
-  "homepage": "https://github.com/LucasPordeus/inventory-system#readme"
+  "homepage": "https://github.com/LucasPordeus/inventory-system#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
 }

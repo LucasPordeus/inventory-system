@@ -27,7 +27,7 @@ export class Login{
         console.log('Logged in user:', user);
         console.log('Allowed menu items for user:', user.screens);
         
-        this.router.navigate(['/home']);
+        this.router.navigate(['/products']);
       },
       error: (err: any) => {
         console.error('Login error:', err);

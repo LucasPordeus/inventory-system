@@ -2,12 +2,12 @@
     {
         "label": "Dashboard",
         "icon": "bar_chart_4_bars",
-        "route": "/menu"
+        "route": "/products"
     },
     {
         "label": "Produtos",
         "icon": "inventory_2",
-        "route": "http://google.com.br"
+        "route": "/products"
     },
     {
         "label": "Fornecedores",
