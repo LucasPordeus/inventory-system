@@ -23,7 +23,7 @@ export class Error {
   }
 
   errorMessages: any = {
-    '401': `Unauthorized: You need to log in to access this page. Redirecting to login in `,
+    '401': `Unauthorized: You need to log in to access this page.`,
     '403': 'Forbidden: You do not have permission to access this page.',
     '404': 'Not Found: The page you are looking for does not exist.',
     '500': 'Internal Server Error: Something went wrong on our end. Please try again later.'
@@ -33,7 +33,7 @@ export class Error {
     if (this.code) {
       setTimeout(() =>{
         window.location.href = '/login';
-      }, 6000)
+      }, 12000)
     };
   };
 
@@ -46,6 +46,6 @@ export class Error {
       if (this.counter <= 0) {
         clearInterval(interval);
       }
-    }, 1000);
+    }, 2000);
   }
 }
