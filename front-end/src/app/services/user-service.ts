@@ -13,7 +13,7 @@ export interface User {
     screen_id: number;
     name: string;
     icon: string;
-    redirectUrl: string;
+    redirect: string;
   }[];
 }
 

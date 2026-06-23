@@ -23,5 +23,9 @@
   "homepage": "https://github.com/LucasPordeus/inventory-system#readme",
   "devDependencies": {
     "concurrently": "^10.0.3"
+  },
+  "dependencies": {
+    "@ngx-translate/core": "^18.0.0",
+    "@ngx-translate/http-loader": "^18.0.0"
   }
 }

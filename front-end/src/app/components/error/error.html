@@ -1,8 +1,8 @@
 <main>
     <section>
-        <h1>Error {{ code }}</h1>
+        <h1>{{ 'errorr.title' | translate }} {{ code }}</h1>
         <p>{{ errorMessages[code] }}</p>
-        <p>Being redirected to Login page in: <b>{{ counter }}</b></p>
+        <p>{{ 'errorr.paragraph' | translate }} <b>{{ counter }}</b></p>
 
         <img src="assets/gifs/banana-cat-crying.gif" alt="Gato vestido de banana chorando">
     </section>

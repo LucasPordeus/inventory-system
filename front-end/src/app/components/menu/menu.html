@@ -9,9 +9,18 @@
       <img src="assets/images/logo.png" class="logo" alt="Icone do sistema">
     </div>
 
-    <div class="profile" (click)="logout()"> 
-        <img src="assets/images/person-profile.png" class="profile_image" alt="Perfil do usuário">  
+    <div class="profile" > 
+      <img src="assets/images/person-profile.png" class="profile_image" alt="Perfil do usuário" (click)="logout()">  
     </div>
+
+  <mat-form-field>
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="selectedLanguage($event)">
+      @for (lang of langs; track lang) {
+        <mat-option [value]="lang.value">{{lang.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
   </mat-toolbar>
 </header>
 

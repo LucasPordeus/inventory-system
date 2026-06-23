@@ -1,0 +1,14 @@
+{
+  "errorr": {
+    "title": "Error",
+    "error_message": "Produtos",
+    "paragraph": "Being redirected to Login page in:"
+  },
+
+
+  "MENU": {
+    "HOME": "Início",
+    "PRODUCTS": "Produtos"
+  },
+  "WELCOME": "Bem-vindo"
+}

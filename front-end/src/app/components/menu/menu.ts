@@ -1,17 +1,28 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 import { MenuService, MenuItem } from '../../services/menu-service';
 import { UserService, User } from '../../services/user-service';
+
+
+interface Lang {
+  value: string;
+  viewValue: string;
+}
+
 
 @Component({
   selector: 'app-menu',
@@ -24,6 +35,8 @@ import { UserService, User } from '../../services/user-service';
     MatIconModule, 
     MatButtonModule,  
     MatListModule,
+    MatSelectModule,
+    FormsModule
   ],
   templateUrl: './menu.html',
   styleUrls: ['./menu.scss']
@@ -42,7 +55,19 @@ export class Menu implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private observer: BreakpointObserver, private menuService: MenuService, private userService: UserService, private router: Router) {}
+  constructor(
+    private observer: BreakpointObserver, 
+    private menuService: MenuService, 
+    private userService: UserService, 
+    private router: Router, 
+    private translate: TranslateService,) {}
+
+  selectedValue!: string;
+
+  langs: Lang[] = [
+    {value: 'pt', viewValue: 'Portuguese'},
+    {value: 'en', viewValue: 'English'},
+  ];
 
   ngOnInit() {
     this.observer
@@ -60,10 +85,12 @@ export class Menu implements OnInit {
       this.menuService.getMenuItems().subscribe({
         next: (items) => {
           this.menuItems = items;
-        },
-        error: (err) => {
-          console.error('Error fetching menu items:', err);
-          this.errorMessageMenu = 'Erro ao carregar os itens do menu';
+          // Limpa a mensagem de erro se items forem carregados
+          if (items && items.length > 0) {
+            this.errorMessageMenu = '';
+          } else {
+            this.errorMessageMenu = 'Erro ao carregar os itens do menu';
+          }
         }
       });
       
@@ -82,7 +109,11 @@ export class Menu implements OnInit {
 
   logout(){
     localStorage.removeItem('token');
+    this.menuService.clearMenuItems();
     this.router.navigate(['/login']);
   }
 
+  selectedLanguage(event: MatSelectChange) {
+    this.translate.use(event.value)
+  }
 }
