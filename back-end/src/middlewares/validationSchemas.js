@@ -12,6 +12,7 @@ const createUserSchema = Joi.object({
   name: Joi.string().min(2).max(150).required(),
   email: Joi.string().email().max(255).required(),
   password: passwordRule,
+  role: Joi.string().valid('admin', 'user').default('user'),
   screenIds: Joi.array().items(Joi.number().integer().positive()).default([])
 });
 

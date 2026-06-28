@@ -21,6 +21,7 @@ const swaggerSpec = {
           user_id: { type: 'integer', example: 1 },
           name: { type: 'string', example: 'João Silva' },
           email: { type: 'string', format: 'email', example: 'joao@email.com' },
+          role: { type: 'string', enum: ['admin', 'user'], example: 'user' },
           created_at: { type: 'string', format: 'date-time' }
         }
       },
@@ -160,6 +161,12 @@ const swaggerSpec = {
                     minLength: 8,
                     description: 'Mínimo 8 caracteres, letra maiúscula, minúscula e número',
                     example: 'Senha123'
+                  },
+                  role: {
+                    type: 'string',
+                    enum: ['admin', 'user'],
+                    default: 'user',
+                    example: 'user'
                   },
                   screenIds: {
                     type: 'array',
