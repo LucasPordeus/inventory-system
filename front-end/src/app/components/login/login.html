@@ -1,3 +1,76 @@
-<input type="email" placeholder="Email" [(ngModel)]="email">
-<input type="password" placeholder="Password" [(ngModel)]="password">
-<button (click)="login()">Login</button>
+<div class="login-page" role="main">
+
+  <div class="login-page__hero" aria-hidden="true">
+    <div class="login-page__hero-overlay"></div>
+  </div>
+
+  <div class="login-page__panel">
+    <div class="login-card" role="region" aria-labelledby="login-title">
+
+      <header class="login-card__header">
+        <h1 id="login-title" class="login-card__title">Bem-vindo</h1>
+        <p class="login-card__subtitle">Acesse sua conta para continuar</p>
+      </header>
+
+      <form class="login-card__form" #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
+
+        <div class="form-group">
+          <label for="email" class="form-group__label">E-mail</label>
+          <input
+            id="email"
+            class="form-group__input"
+            [class.form-group__input--error]="emailField.invalid && (emailField.dirty || emailField.touched || submitted)"
+            type="email"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+            name="email"
+            #emailField="ngModel"
+            autocomplete="email"
+            required
+            email
+            aria-required="true"
+            [attr.aria-invalid]="emailField.invalid && (emailField.dirty || emailField.touched || submitted)"
+            aria-describedby="email-error"
+          />
+          @if (emailField.invalid && (emailField.dirty || emailField.touched || submitted)) {
+            <span id="email-error" class="form-group__error" role="alert">
+              @if (emailField.errors?.['required']) { E-mail é obrigatório. }
+              @else if (emailField.errors?.['email']) { Informe um e-mail válido. }
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-group__label">Senha</label>
+          <input
+            id="password"
+            class="form-group__input"
+            [class.form-group__input--error]="passwordField.invalid && (passwordField.dirty || passwordField.touched || submitted)"
+            type="password"
+            placeholder="••••••••"
+            [(ngModel)]="password"
+            name="password"
+            #passwordField="ngModel"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+            [attr.aria-invalid]="passwordField.invalid && (passwordField.dirty || passwordField.touched || submitted)"
+            aria-describedby="password-error"
+          />
+          @if (passwordField.invalid && (passwordField.dirty || passwordField.touched || submitted)) {
+            <span id="password-error" class="form-group__error" role="alert">
+              Senha é obrigatória.
+            </span>
+          }
+        </div>
+
+        <button class="login-card__submit" type="submit">
+          Entrar
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

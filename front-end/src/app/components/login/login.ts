@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth';
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgForm } from "@angular/forms";
 import { UserService, User } from "../../services/user-service";
 import { MenuService } from "../../services/menu-service";
 
@@ -16,15 +16,19 @@ import { MenuService } from "../../services/menu-service";
 export class Login{
   email: string = '';
   password: string = '';
+  submitted: boolean = false;
 
   constructor(
-    private userService: UserService, 
-    private router: Router, 
+    private userService: UserService,
+    private router: Router,
     private AuthService: AuthService,
     private menuService: MenuService
   ) {}
 
-  login(): void {
+  login(form: NgForm): void {
+    this.submitted = true;
+    if (form.invalid) return;
+
     this.userService.login(this.email, this.password).subscribe({
       next: (user: User) => {
         localStorage.setItem('token', user.token);
