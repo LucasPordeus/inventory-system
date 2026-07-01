@@ -146,6 +146,7 @@ const swaggerSpec = {
       post: {
         tags: ['Usuários'],
         summary: 'Criar usuário',
+        security: [{ bearerAuth: [] }],
         requestBody: {
           required: true,
           content: {
