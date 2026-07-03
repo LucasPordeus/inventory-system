@@ -13,6 +13,7 @@ export const routes: Routes = [
     component: Layout,
     canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'products', pathMatch: 'full' }, //mudar depois para o primeiro item do menu que o usuario tem acesso
       { path: 'products', component: Products }
     ]
   },

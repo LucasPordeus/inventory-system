@@ -39,7 +39,7 @@ export class Login{
         }
 
         this.AuthService.setLoggedIn(true);
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products']); //mudar depois para o primeiro item do menu que o usuario tem acesso
       },
       error: (err: any) => {
         console.error('Login error:', err);
