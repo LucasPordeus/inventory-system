@@ -13,14 +13,9 @@
       <img src="assets/images/person-profile.png" class="profile_image" alt="Perfil do usuário" (click)="logout()">  
     </div>
 
-  <mat-form-field>
-    <mat-label>Language</mat-label>
-    <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="selectedLanguage($event)">
-      @for (lang of langs; track lang) {
-        <mat-option [value]="lang.value">{{lang.viewValue}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+    <div class="translation_icon_container">
+      <app-translation-selector />
+    </div>
   </mat-toolbar>
 </header>
 
@@ -39,7 +34,7 @@
           <span class="entry"> 
             <mat-icon aria-label="{{item.label}}">{{item.icon}}</mat-icon>          
               @if(!isCollapsed){
-                <p>{{item.label}}</p>
+                <p>{{ item.label }}</p>
               }
           </span>
         </a>

@@ -1,0 +1,27 @@
+
+<div class="translation_container">
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectedValue" name="lang" (selectionChange)="selectedLanguage($event)">
+      <mat-select-trigger>
+        @if (selectedValue === 'en') {
+          <img src="/assets/images/united-states-flag.png" alt="USA Flag" class="flag_icon">
+        }
+        @if (selectedValue === 'pt') {
+          <img src="/assets/images/brazil-flag.png" alt="Brazil Flag" class="flag_icon">
+        }
+        {{ getViewValue(selectedValue) }}
+      </mat-select-trigger>
+      @for (lang of langs; track lang) {
+        <mat-option class="lang" [value]="lang.value">
+          @if (lang.value === 'en') {
+            <img src="/assets/images/united-states-flag.png" alt="USA Flag" class="flag_icon">
+          }
+          @if (lang.value === 'pt') {
+            <img src="/assets/images/brazil-flag.png" alt="Brazil Flag" class="flag_icon">
+          }
+          {{lang.viewValue}}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

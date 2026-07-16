@@ -3,11 +3,12 @@ import { ActivatedRoute } from "@angular/router";
 import { ChangeDetectorRef } from '@angular/core';
 
 import { TranslatePipe, TranslateDirective } from '@ngx-translate/core';
+import { TranslationSelector } from "../translation-selector/translation-selector";
 
 @Component({
   selector: "app-error",
   standalone: true,
-  imports: [TranslatePipe, TranslateDirective],
+  imports: [TranslatePipe, TranslateDirective, TranslationSelector],
   templateUrl: "./error.html",
   styleUrl: "./error.scss",
 })

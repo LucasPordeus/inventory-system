@@ -2,13 +2,17 @@ import { AuthService } from './../../services/auth';
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
+
+import { TranslatePipe, TranslateDirective } from '@ngx-translate/core';
+import { TranslationSelector } from "../translation-selector/translation-selector";
+
 import { UserService, User } from "../../services/user-service";
 import { MenuService } from "../../services/menu-service";
 
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslationSelector, TranslatePipe, TranslateDirective],
   templateUrl: "./login.html",
   styleUrls: ["./login.scss"],
 })

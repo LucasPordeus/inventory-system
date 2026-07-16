@@ -1,3 +1,7 @@
+<div class="translation_icon_container">
+  <app-translation-selector />
+</div>
+
 <div class="login-page" role="main">
 
   <div class="login-page__hero" aria-hidden="true">
@@ -8,20 +12,20 @@
     <div class="login-card" role="region" aria-labelledby="login-title">
 
       <header class="login-card__header">
-        <h1 id="login-title" class="login-card__title">Bem-vindo</h1>
-        <p class="login-card__subtitle">Acesse sua conta para continuar</p>
+        <h1 id="login-title" class="login-card__title">{{ 'login.title' | translate }}</h1>
+        <p class="login-card__subtitle">{{ 'login.subtitle' | translate }}</p>
       </header>
 
       <form class="login-card__form" #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
 
         <div class="form-group">
-          <label for="email" class="form-group__label">E-mail</label>
+          <label for="email" class="form-group__label">{{ 'login.email' | translate }}</label>
           <input
             id="email"
             class="form-group__input"
             [class.form-group__input--error]="emailField.invalid && (emailField.dirty || emailField.touched || submitted)"
             type="email"
-            placeholder="seu@email.com"
+            placeholder="{{ 'login.email_placeholder' | translate }}"
             [(ngModel)]="email"
             name="email"
             #emailField="ngModel"
@@ -34,14 +38,14 @@
           />
           @if (emailField.invalid && (emailField.dirty || emailField.touched || submitted)) {
             <span id="email-error" class="form-group__error" role="alert">
-              @if (emailField.errors?.['required']) { E-mail é obrigatório. }
-              @else if (emailField.errors?.['email']) { Informe um e-mail válido. }
+              @if (emailField.errors?.['required']) { {{ 'login.email_required' | translate }} }
+              @else if (emailField.errors?.['email']) { {{ 'login.email_invalid' | translate }} }
             </span>
           }
         </div>
 
         <div class="form-group">
-          <label for="password" class="form-group__label">Senha</label>
+          <label for="password" class="form-group__label">{{ 'login.password' | translate }}</label>
           <input
             id="password"
             class="form-group__input"
@@ -58,19 +62,12 @@
             aria-describedby="password-error"
           />
           @if (passwordField.invalid && (passwordField.dirty || passwordField.touched || submitted)) {
-            <span id="password-error" class="form-group__error" role="alert">
-              Senha é obrigatória.
-            </span>
+            <span id="password-error" class="form-group__error" role="alert">{{ 'login.error_password' | translate }}</span>
           }
         </div>
 
-        <button class="login-card__submit" type="submit">
-          Entrar
-        </button>
-
+        <button class="login-card__submit" type="submit">{{ 'login.button' | translate }}</button>
       </form>
-
     </div>
   </div>
-
 </div>

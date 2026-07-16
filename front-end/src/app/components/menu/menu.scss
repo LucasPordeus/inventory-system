@@ -144,3 +144,10 @@ mat-sidenav-content{
 input{
     width: 100%;
 }
+
+.translation_icon_container {
+  position: relative;
+  top: 1rem;
+  padding-left: 1rem;
+  z-index: 10;
+}

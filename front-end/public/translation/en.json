@@ -7,8 +7,28 @@
 
 
   "MENU": {
-    "HOME": "Início",
-    "PRODUCTS": "Produtos"
+    "HOME": "Home",
+    "DASHBOARD": "Dashboard",
+    "PRODUCTS": "Products",
+    "SUPPLIERS": "Suppliers",
+    "MOVIMENTS": "Movements",
+    "USERS": "Users",
+    "LOGOUT": "Logout"
   },
-  "WELCOME": "Bem-vindo"
+
+  "login": {
+    "title": "Welcome",
+    "subtitle": "Login to your account to continue",
+    "email": "Email",
+    "email_placeholder": "your@email.com",
+    "password": "Password",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email",
+    "error_password": "Password is required",
+    "button": "Enter"
+  },
+
+  "WELCOME": "Welcome"
+
+
 }

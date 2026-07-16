@@ -14,14 +14,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSelectChange } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 
+import { TranslationSelector } from '../translation-selector/translation-selector';
+
 import { MenuService, MenuItem } from '../../services/menu-service';
 import { UserService, User } from '../../services/user-service';
-
-
-interface Lang {
-  value: string;
-  viewValue: string;
-}
 
 
 @Component({
@@ -30,14 +26,16 @@ interface Lang {
   imports: [
     CommonModule,
     RouterOutlet,
-    MatToolbarModule, 
-    MatSidenavModule, 
-    MatIconModule, 
-    MatButtonModule,  
+    TranslationSelector,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
     MatListModule,
     MatSelectModule,
-    FormsModule
-  ],
+    FormsModule,
+    TranslationSelector
+],
   templateUrl: './menu.html',
   styleUrls: ['./menu.scss']
 })
@@ -64,11 +62,6 @@ export class Menu implements OnInit {
 
   selectedValue!: string;
 
-  langs: Lang[] = [
-    {value: 'pt', viewValue: 'Portuguese'},
-    {value: 'en', viewValue: 'English'},
-  ];
-
   ngOnInit() {
     this.observer
       .observe(['(max-width: 800px)'])
@@ -93,8 +86,6 @@ export class Menu implements OnInit {
           }
         }
       });
-      
-
   }
 
   toggleMenu() {
@@ -111,9 +102,5 @@ export class Menu implements OnInit {
     localStorage.removeItem('token');
     this.menuService.clearMenuItems();
     this.router.navigate(['/login']);
-  }
-
-  selectedLanguage(event: MatSelectChange) {
-    this.translate.use(event.value)
   }
 }

@@ -1,14 +1,30 @@
 {
   "errorr": {
     "title": "Erro",
-    "error_message": "Produtos",
     "paragraph": "Redirecionando para a página de Login em:"
   },
 
 
   "MENU": {
     "HOME": "Início",
-    "PRODUCTS": "Produtos"
+    "DASHBOARD": "Dashboard",
+    "PRODUCTS": "Produtos",
+    "SUPPLIERS": "Fornecedores",
+    "MOVIMENTS": "Movimentações",
+    "USERS": "Usuários",
+    "LOGOUT": "Sair"
   },
+
+  "login": {
+    "title": "Bem-vindo",
+    "subtitle": "Acesse sua conta para continuar",
+    "email": "Email",
+    "password": "Senha",
+    "error_email": "Email é obrigatório",
+    "error_password": "Senha é obrigatória",
+    "button": "Entrar"
+  },
+
   "WELCOME": "Bem-vindo"
+
 }

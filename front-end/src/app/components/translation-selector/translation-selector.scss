@@ -1,0 +1,56 @@
+mat-form-field{
+  width: 90%;
+  position: relative;
+  right: 0;
+  float: right;
+}
+
+.lang{
+  font-size: 17px;
+}
+
+::ng-deep .translation_container {
+  .mat-mdc-form-field-flex {
+    background-color: transparent !important;
+    border-radius: 5px 5px 0 0 !important;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    background-color: #ffffffe3 !important;
+    border-radius: 5px 5px 0 0 !important;
+    overflow: hidden;
+    padding-left: 0 !important;
+  }
+
+    
+  .mat-mdc-form-field-infix {
+    padding: 8px 12px !important;
+    min-height: unset !important;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #ffffffe3 !important;
+  }
+
+  // texto e ícone da seta 
+  .mat-mdc-select-value,
+  .mat-mdc-select-arrow {
+    color: #000000 !important;
+  }
+}
+
+.flag_icon {
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+mat-select-trigger {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .mat-mdc-option .mat-pseudo-checkbox {
+  display: none !important;
+}
