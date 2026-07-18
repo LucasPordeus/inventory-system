@@ -19,8 +19,9 @@
     "title": "Bem-vindo",
     "subtitle": "Acesse sua conta para continuar",
     "email": "Email",
+    "email_placeholder": "seu@email.com",
+    "email_required": "Email é obrigatório",
     "password": "Senha",
-    "error_email": "Email é obrigatório",
     "error_password": "Senha é obrigatória",
     "button": "Entrar"
   },
