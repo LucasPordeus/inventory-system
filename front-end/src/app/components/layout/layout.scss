@@ -1,4 +1,10 @@
 .content{
     padding-top: 5%;
+    padding-left: 8%;
+
+    @media (max-width: 800px) {
+        padding-left: 0;
+        
+    }
 }
 

@@ -21,6 +21,7 @@
     "email": "Email",
     "email_placeholder": "seu@email.com",
     "email_required": "Email é obrigatório",
+    "email_invalid": "Por favor, insira um email válido",
     "password": "Senha",
     "error_password": "Senha é obrigatória",
     "button": "Entrar"
