@@ -1,26 +1,184 @@
-.container{
-    width: 90%;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    display: flex;
-    justify-content: space-around;
+$primary: #291470;
+$primary-light: #3d1fa3;
+$accent: rgb(230, 0, 84);
+$gray-100: #f5f5f7;
+$gray-200: #e8e8ed;
+$gray-400: #a0a0ab;
+$gray-600: #6b6b76;
+$white: #ffffff;
+$radius: 12px;
+$transition: 0.2s ease;
+
+section {
+    width: 100%;
+    margin-bottom: 1.5rem;
 }
 
-.flex{
+.container {
+    width: 90%;
+    background-color: $white;
+    border-radius: $radius;
+    padding: 1.25rem 1.5rem;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.08),
+        0 1px 12px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search_input {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    top: 9px;
+
+    .search_icon {
+        position: absolute;
+        left: 0.875rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $gray-400;
+        font-size: 0.85rem;
+        pointer-events: none;
+        transition: color $transition;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.625rem 1rem 0.625rem 2.5rem;
+        border: 1.5px solid $gray-200;
+        border-radius: 8px;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #333;
+        background-color: $gray-100;
+        outline: none;
+        transition: border-color $transition, background-color $transition, box-shadow $transition;
+        box-sizing: border-box;
+
+        &::placeholder {
+            color: $gray-400;
+        }
+
+        &:hover {
+            border-color: $gray-400;
+            background-color: $white;
+        }
+
+        &:focus {
+            border-color: $primary;
+            background-color: $white;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        &::-webkit-search-cancel-button {
+            cursor: pointer;
+        }
+    }
+
+    &:hover .search_icon {
+        color: $primary;
+    }
+
+    &:focus-within .search_icon {
+        color: $primary;
+    }
+}
+
+.filters_group {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter_item {
     display: flex;
     flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $gray-600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    select,
+    input[type="date"] {
+        padding: 0.55rem 2rem 0.55rem 0.75rem;
+        border: 1.5px solid $gray-200;
+        border-radius: 8px;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #333;
+        background-color: $gray-100;
+        outline: none;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b76' d='M2.5 4.5L6 8l3.5-3.5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.65rem center;
+        transition: border-color $transition, background-color $transition, box-shadow $transition;
+
+        &:hover {
+            border-color: $gray-400;
+            background-color: $white;
+        }
+
+        &:focus {
+            border-color: $primary;
+            background-color: $white;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+    }
+
+    input[type="date"] {
+        padding-right: 0.75rem;
+        background-image: none;
+        min-width: 140px;
+
+        &::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity $transition;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
 }
 
-.search_input{
-    top: 0;
-}
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-label{
-    margin-bottom: 0.2rem;
-}
+    .search_input {
+        min-width: 100%;
+    }
 
-input{
-    
+    .filters_group {
+        width: 100%;
+    }
+
+    .filter_item {
+        flex: 1;
+        min-width: 120px;
+        select{
+            option{
+                font-size: 5px;
+            }
+        }
+    }
 }

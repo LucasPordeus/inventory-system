@@ -1,43 +1,45 @@
 <section>
     <div class="container">
         <div class="search_input">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" id="search" name="search" />
+            <i class="fa-solid fa-magnifying-glass search_icon"></i>
+            <input type="search" id="search" name="search" placeholder="Buscar produto..." />
         </div>
 
-        <div class="category_select flex">
-            <label for="category">Categoria</label>
-            <select id="category" name="category">
-                <option disabled selected></option>
-                <option value="eletronicos">Eletrônicos</option>
-                <option value="vestuario">Vestuário</option>
-                <option value="alimentos">Alimentos</option>
-            </select>
-        </div>
+        <div class="filters_group">
+            <div class="filter_item">
+                <label for="category">Categoria</label>
+                <select id="category" name="category">
+                    <option disabled selected>Todas</option>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="vestuario">Vestuário</option>
+                    <option value="alimentos">Alimentos</option>
+                </select>
+            </div>
 
-        <div class="supplier_select flex">
-            <label for="supplier">Fornecedor</label>
-            <select id="supplier" name="supplier">
-                <option disabled selected></option>
-                <option value="eletronicos">Eletrônicos</option>
-                <option value="vestuario">Vestuário</option>
-                <option value="alimentos">Alimentos</option>
-            </select>
-        </div>
+            <div class="filter_item">
+                <label for="supplier">Fornecedor</label>
+                <select id="supplier" name="supplier">
+                    <option disabled selected>Todos</option>
+                    <option value="fornecedor_a">Fornecedor A</option>
+                    <option value="fornecedor_b">Fornecedor B</option>
+                    <option value="fornecedor_c">Fornecedor C</option>
+                </select>
+            </div>
 
-        <div class="status_select flex">
-            <label for="status">Status</label>
-            <select id="status" name="status">
-                <option disabled selected></option>
-                <option value="eletronicos">Eletrônicos</option>
-                <option value="vestuario">Vestuário</option>
-                <option value="alimentos">Alimentos</option>
-            </select>
-        </div>
+            <div class="filter_item">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option disabled selected>Todos</option>
+                    <option value="em_estoque">Em Estoque</option>
+                    <option value="baixo_estoque">Baixo Estoque</option>
+                    <option value="fora_estoque">Fora de Estoque</option>
+                </select>
+            </div>
 
-        <div class="date_input flex">
-            <label for="expiration_date">Validade</label>
-            <input type="date" id="expiration_date" name="expiration_date" />
+            <div class="filter_item">
+                <label for="expiration_date">Validade</label>
+                <input type="date" id="expiration_date" name="expiration_date" />
+            </div>
         </div>
     </div>
 </section>
