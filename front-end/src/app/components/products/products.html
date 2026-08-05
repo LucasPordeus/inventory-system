@@ -1,21 +1,64 @@
 <main>
   <h2>produtos</h2>
-  <!--
-  <div class="grid">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-   -->
     <app-filters />
-    <app-product />
+
+    <div class="products_container">
+      <div class="options">
+        <div class="options_group">
+          <button
+            class="option_btn"
+            [class.active]="sortOrder() === 'az'"
+            (click)="toggleSort('az')"
+            title="Ordenar A-Z"
+            aria-label="Ordenar de A a Z"
+          >
+            <mat-icon>sort_by_alpha</mat-icon>
+          </button>
+          <button
+            class="option_btn"
+            [class.active]="sortOrder() === 'za'"
+            (click)="toggleSort('za')"
+            title="Ordenar Z-A"
+            aria-label="Ordenar de Z a A"
+          >
+            <mat-icon class="rotate">sort_by_alpha</mat-icon>
+          </button>
+        </div>
+
+        <div class="options_group">
+          <button
+            class="option_btn"
+            [class.active]="layout() === 'grid'"
+            (click)="toggleLayout()"
+            title="Exibir em grade"
+            aria-label="Exibir itens em grade"
+          >
+            <mat-icon>grid_view</mat-icon>
+          </button>
+          <button
+            class="option_btn"
+            [class.active]="layout() === 'list'"
+            (click)="toggleLayout()"
+            title="Exibir em lista"
+            aria-label="Exibir itens um abaixo do outro"
+          >
+            <mat-icon>view_list</mat-icon>
+          </button>
+        </div>
+
+        <nav class="pagination" aria-label="Paginação">
+          @for(page of pages(); track page){
+            <button
+              class="page_btn"
+              [class.active]="currentPage() === page"
+              (click)="goToPage(page)"
+              aria-label="Ir para a página {{ page }}"
+            >
+              {{ page }}
+            </button>
+          }
+        </nav>
+      </div>
+        <app-product class="product" [items]="visibleItems()" [layout]="layout()"/>
+    </div>
   </main>

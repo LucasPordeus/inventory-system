@@ -1,1 +1,15 @@
-<p>product works!</p>
+<section [class.list]="layout() === 'list'">
+    @for(item of items(); track item.name){
+        <div class="item card">
+            <div class="card_image">
+                <img [src]="item.image" [alt]="item.name" />
+            </div>
+            <div class="card_info">
+                <p class="card_name">{{ item.name }}</p>
+                <span class="card_category">{{ item.category }}</span>
+            </div>
+        </div>
+    } @empty {
+        <p class="empty_message">Nenhum produto para exibir</p>
+    }
+</section>
