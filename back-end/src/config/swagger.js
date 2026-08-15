@@ -34,6 +34,19 @@ const swaggerSpec = {
           redirect: { type: 'string', example: '/dashboard' }
         }
       },
+      Product: {
+        type: 'object',
+        properties: {
+          product_id: { type: 'integer', example: 1 },
+          name: { type: 'string', example: 'Arroz' },
+          quantity: { type: 'integer', example: 50 },
+          unit: { type: 'string', example: 'kg' },
+          unit_price: { type: 'number', format: 'double', example: 25.9 },
+          category: { type: 'string', example: 'Grãos' },
+          expiration_date: { type: 'string', format: 'date', example: '2026-12-31' },
+          product_image: { type: 'string', description: 'Imagem do produto (base64)' }
+        }
+      },
       Error: {
         type: 'object',
         properties: {
@@ -475,6 +488,133 @@ const swaggerSpec = {
         ],
         responses: {
           204: { description: 'Tela deletada' },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      }
+    },
+
+    '/products': {
+      get: {
+        tags: ['Produtos'],
+        summary: 'Listar produtos',
+        security: [{ bearerAuth: [] }],
+        responses: {
+          200: {
+            description: 'Lista de produtos',
+            content: {
+              'application/json': {
+                schema: { type: 'array', items: { $ref: '#/components/schemas/Product' } }
+              }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' }
+        }
+      },
+      post: {
+        tags: ['Produtos'],
+        summary: 'Criar produto',
+        security: [{ bearerAuth: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['name', 'quantity'],
+                properties: {
+                  name: { type: 'string', minLength: 1, maxLength: 150, example: 'Arroz' },
+                  quantity: { type: 'integer', minimum: 0, example: 50 },
+                  unit: { type: 'string', maxLength: 20, example: 'kg' },
+                  unitPrice: { type: 'number', format: 'double', example: 25.9 },
+                  category: { type: 'string', maxLength: 100, example: 'Grãos' },
+                  expirationDate: { type: 'string', format: 'date', example: '2026-12-31' },
+                  productImage: { type: 'string', description: 'Imagem do produto (base64)' }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          201: {
+            description: 'Produto criado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Product' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      }
+    },
+
+    '/products/{id}': {
+      get: {
+        tags: ['Produtos'],
+        summary: 'Buscar produto por ID',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          200: {
+            description: 'Produto encontrado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Product' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      },
+      put: {
+        tags: ['Produtos'],
+        summary: 'Atualizar produto',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                minProperties: 1,
+                properties: {
+                  name: { type: 'string', minLength: 1, maxLength: 150 },
+                  quantity: { type: 'integer', minimum: 0 },
+                  unit: { type: 'string', maxLength: 20 },
+                  unitPrice: { type: 'number', format: 'double' },
+                  category: { type: 'string', maxLength: 100 },
+                  expirationDate: { type: 'string', format: 'date' },
+                  productImage: { type: 'string', description: 'Imagem do produto (base64)' }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: 'Produto atualizado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Product' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      },
+      delete: {
+        tags: ['Produtos'],
+        summary: 'Deletar produto',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          204: { description: 'Produto deletado' },
           401: { $ref: '#/components/responses/Unauthorized' },
           404: { $ref: '#/components/responses/NotFound' }
         }

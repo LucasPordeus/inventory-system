@@ -42,11 +42,33 @@ const updateScreenSchema = Joi.object({
   redirect: Joi.string().min(1).max(255)
 }).min(1);
 
+const createProductSchema = Joi.object({
+  name: Joi.string().min(1).max(150).required(),
+  quantity: Joi.number().integer().min(0).required(),
+  unit: Joi.string().max(20).allow(null, ''),
+  unitPrice: Joi.number().precision(2).min(0).allow(null),
+  category: Joi.string().max(100).allow(null, ''),
+  expirationDate: Joi.date().iso().allow(null),
+  productImage: Joi.string().allow(null, '')
+});
+
+const updateProductSchema = Joi.object({
+  name: Joi.string().min(1).max(150),
+  quantity: Joi.number().integer().min(0),
+  unit: Joi.string().max(20).allow(null, ''),
+  unitPrice: Joi.number().precision(2).min(0).allow(null),
+  category: Joi.string().max(100).allow(null, ''),
+  expirationDate: Joi.date().iso().allow(null),
+  productImage: Joi.string().allow(null, '')
+}).min(1);
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
   setUserScreensSchema,
   loginSchema,
   createScreenSchema,
-  updateScreenSchema
+  updateScreenSchema,
+  createProductSchema,
+  updateProductSchema
 };
