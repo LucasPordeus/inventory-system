@@ -32,23 +32,27 @@ src/
 │   ├── authRoutes.js          # /api/auth
 │   ├── userRoutes.js           # /api/users
 │   ├── screenRoutes.js          # /api/screens
-│   └── productRoutes.js          # /api/products
+│   ├── productRoutes.js          # /api/products
+│   └── movementRoutes.js          # /api/movements
 ├── controllers/
 │   ├── authController.js       # Login
 │   ├── userController.js        # CRUD de usuários + telas do usuário
 │   ├── screenController.js       # CRUD de telas (screens)
-│   └── productController.js       # CRUD de produtos
+│   ├── productController.js       # CRUD de produtos
+│   └── movementController.js       # CRUD de movimentações
 ├── services/
 │   ├── authService.js           # Regra de autenticação (checagem de senha, geração de JWT)
 │   ├── userService.js            # Regra de negócio de usuários
 │   ├── screenService.js           # Regra de negócio de telas
-│   └── productService.js           # Regra de negócio de produtos
+│   ├── productService.js           # Regra de negócio de produtos
+│   └── movementService.js           # Regra de negócio de movimentações (valida usuário/produto)
 ├── repositories/
 │   ├── userRepository.js          # Queries SQL da tabela users
 │   ├── screenRepository.js         # Queries SQL da tabela screens
 │   ├── userScreenRepository.js      # Queries SQL da tabela de junção users_screens
 │   ├── loginLogRepository.js         # Queries SQL da tabela logs_login
-│   └── productRepository.js           # Queries SQL da tabela products
+│   ├── productRepository.js           # Queries SQL da tabela products
+│   └── movementRepository.js           # Queries SQL da tabela movements
 ├── middlewares/
 │   ├── authMiddleware.js           # Valida o JWT e popula req.user
 │   ├── adminMiddleware.js           # Exige req.user.role === 'admin'
@@ -95,6 +99,7 @@ src/
 - **`users_screens`**: tabela de junção N:N — quais telas cada usuário pode acessar.
 - **`logs_login`**: histórico de logins por usuário.
 - **`products`**: itens do estoque (`name`, `quantity`, `unit`, `unit_price`, `category`, `expiration_date`, `product_image`).
+- **`movements`**: entradas/saídas de estoque (`quantity`, `direction` [`in`/`out`], `status`, `user_id` → `users`, `product_id` → `products`).
 
 ## Autenticação e autorização
 

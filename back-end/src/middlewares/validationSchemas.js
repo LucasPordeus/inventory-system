@@ -62,6 +62,20 @@ const updateProductSchema = Joi.object({
   productImage: Joi.string().allow(null, '')
 }).min(1);
 
+const createMovementSchema = Joi.object({
+  quantity: Joi.number().integer().min(1).required(),
+  direction: Joi.string().valid('in', 'out').required(),
+  status: Joi.string().max(50).allow(null, ''),
+  userId: Joi.number().integer().positive().required(),
+  productId: Joi.number().integer().positive().required()
+});
+
+const updateMovementSchema = Joi.object({
+  quantity: Joi.number().integer().min(1),
+  direction: Joi.string().valid('in', 'out'),
+  status: Joi.string().max(50).allow(null, '')
+}).min(1);
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
@@ -70,5 +84,7 @@ module.exports = {
   createScreenSchema,
   updateScreenSchema,
   createProductSchema,
-  updateProductSchema
+  updateProductSchema,
+  createMovementSchema,
+  updateMovementSchema
 };

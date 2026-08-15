@@ -47,6 +47,18 @@ const swaggerSpec = {
           product_image: { type: 'string', description: 'Imagem do produto (base64)' }
         }
       },
+      Movement: {
+        type: 'object',
+        properties: {
+          movement_id: { type: 'integer', example: 1 },
+          quantity: { type: 'integer', example: 10 },
+          direction: { type: 'string', enum: ['in', 'out'], example: 'in' },
+          status: { type: 'string', example: 'completed' },
+          user_id: { type: 'integer', example: 1 },
+          product_id: { type: 'integer', example: 1 },
+          created_at: { type: 'string', format: 'date-time' }
+        }
+      },
       Error: {
         type: 'object',
         properties: {
@@ -615,6 +627,128 @@ const swaggerSpec = {
         ],
         responses: {
           204: { description: 'Produto deletado' },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      }
+    },
+
+    '/movements': {
+      get: {
+        tags: ['Movimentações'],
+        summary: 'Listar movimentações',
+        security: [{ bearerAuth: [] }],
+        responses: {
+          200: {
+            description: 'Lista de movimentações',
+            content: {
+              'application/json': {
+                schema: { type: 'array', items: { $ref: '#/components/schemas/Movement' } }
+              }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' }
+        }
+      },
+      post: {
+        tags: ['Movimentações'],
+        summary: 'Criar movimentação',
+        security: [{ bearerAuth: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['quantity', 'direction', 'userId', 'productId'],
+                properties: {
+                  quantity: { type: 'integer', minimum: 1, example: 10 },
+                  direction: { type: 'string', enum: ['in', 'out'], example: 'in' },
+                  status: { type: 'string', maxLength: 50, example: 'completed' },
+                  userId: { type: 'integer', example: 1 },
+                  productId: { type: 'integer', example: 1 }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          201: {
+            description: 'Movimentação criada',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Movement' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      }
+    },
+
+    '/movements/{id}': {
+      get: {
+        tags: ['Movimentações'],
+        summary: 'Buscar movimentação por ID',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          200: {
+            description: 'Movimentação encontrada',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Movement' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      },
+      put: {
+        tags: ['Movimentações'],
+        summary: 'Atualizar movimentação',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                minProperties: 1,
+                properties: {
+                  quantity: { type: 'integer', minimum: 1 },
+                  direction: { type: 'string', enum: ['in', 'out'] },
+                  status: { type: 'string', maxLength: 50 }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: 'Movimentação atualizada',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Movement' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      },
+      delete: {
+        tags: ['Movimentações'],
+        summary: 'Deletar movimentação',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          204: { description: 'Movimentação deletada' },
           401: { $ref: '#/components/responses/Unauthorized' },
           404: { $ref: '#/components/responses/NotFound' }
         }
