@@ -2,7 +2,9 @@ h1{
     padding: 0 1rem;
 }
 
-h2{padding: 1rem;}
+h2{
+    padding: 1rem;
+}
 
 mat-toolbar{
     position:fixed;
@@ -20,7 +22,6 @@ mat-toolbar{
     }
 }
 
-//VER ESSE ABSOLUTE
 mat-sidenav-container{
     height: 100%;
     width: fit-content;
@@ -30,6 +31,7 @@ mat-sidenav-container{
     @media screen and (max-width: 800px){
         width: 80vh;
     }
+    background-color: transparent;
 }
 
 span{
