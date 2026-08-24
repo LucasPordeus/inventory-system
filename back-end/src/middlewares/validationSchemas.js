@@ -62,6 +62,20 @@ const updateProductSchema = Joi.object({
   productImage: Joi.string().allow(null, '')
 }).min(1);
 
+const createSupplierschema = Joi.object({
+  name: Joi.string().min(1).max(150).required(),
+  contact: Joi.string().max(20).required(),
+  cnpj: Joi.string().max(20).required(),
+  category: Joi.string().max(100).required()
+});
+
+const updateSupplierschema = Joi.object({
+  name: Joi.string().min(1).max(150),
+  contact: Joi.string().max(20),
+  cnpj: Joi.string().max(20),
+  category: Joi.string().max(100)
+}).min(1);
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
@@ -70,5 +84,7 @@ module.exports = {
   createScreenSchema,
   updateScreenSchema,
   createProductSchema,
-  updateProductSchema
+  updateProductSchema,
+  createSupplierschema,
+  updateSupplierschema
 };
