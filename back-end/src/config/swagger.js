@@ -47,6 +47,22 @@ const swaggerSpec = {
           product_image: { type: 'string', description: 'Imagem do produto (base64)' }
         }
       },
+      Supplier: {
+        type: 'object',
+        properties: {
+          supplier_id: { type: 'integer', example: 1 },
+          name: { type: 'string', example: 'Distribuidora Alimentos SA' },
+          cnpj: { type: 'string', example: '12.345.678/0001-90' },
+          email: { type: 'string', format: 'email', example: 'contato@dist.com' },
+          phone: { type: 'string', example: '(11) 99999-1234' },
+          address: { type: 'string', example: 'Rua das Palmeiras, 500' },
+          city: { type: 'string', example: 'São Paulo' },
+          state: { type: 'string', example: 'SP' },
+          notes: { type: 'string', example: 'Fornecedor de grãos e cereais' },
+          created_at: { type: 'string', format: 'date-time' },
+          updated_at: { type: 'string', format: 'date-time' }
+        }
+      },
       Error: {
         type: 'object',
         properties: {
@@ -615,6 +631,127 @@ const swaggerSpec = {
         ],
         responses: {
           204: { description: 'Produto deletado' },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      }
+    },
+
+    '/suppliers': {
+      get: {
+        tags: ['Fornecedores'],
+        summary: 'Listar fornecedores',
+        security: [{ bearerAuth: [] }],
+        responses: {
+          200: {
+            description: 'Lista de fornecedores',
+            content: {
+              'application/json': {
+                schema: { type: 'array', items: { $ref: '#/components/schemas/Supplier' } }
+              }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' }
+        }
+      },
+      post: {
+        tags: ['Fornecedores'],
+        summary: 'Criar fornecedor',
+        security: [{ bearerAuth: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['name'],
+                properties: {
+                  name: { type: 'string', minLength: 1, maxLength: 150, example: 'Distribuidora Alimentos SA' },
+                  cnpj: { type: 'string', maxLength: 20, example: '12.345.678/0001-90' },
+                  contato: { type: 'string', maxLength: 20, example: '(92)4453-6758' },
+                  categoria: { type: 'string', maxLength: 100, example: 'Alimentício' }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          201: {
+            description: 'Fornecedor criado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Supplier' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      }
+    },
+
+    '/suppliers/{id}': {
+      get: {
+        tags: ['Fornecedores'],
+        summary: 'Buscar fornecedor por ID',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          200: {
+            description: 'Fornecedor encontrado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Supplier' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' }
+        }
+      },
+      put: {
+        tags: ['Fornecedores'],
+        summary: 'Atualizar fornecedor',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                minProperties: 1,
+                properties: {
+                  name: { type: 'string', minLength: 1, maxLength: 150 },
+                  cnpj: { type: 'string', maxLength: 20 },
+                  contato: { type: 'string', maxLength: 20 },
+                  categoria: { type: 'string', maxLength: 100 }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: 'Fornecedor atualizado',
+            content: {
+              'application/json': { schema: { $ref: '#/components/schemas/Supplier' } }
+            }
+          },
+          401: { $ref: '#/components/responses/Unauthorized' },
+          404: { $ref: '#/components/responses/NotFound' },
+          422: { $ref: '#/components/responses/ValidationError' }
+        }
+      },
+      delete: {
+        tags: ['Fornecedores'],
+        summary: 'Deletar fornecedor',
+        security: [{ bearerAuth: [] }],
+        parameters: [
+          { name: 'id', in: 'path', required: true, schema: { type: 'integer' } }
+        ],
+        responses: {
+          204: { description: 'Fornecedor deletado' },
           401: { $ref: '#/components/responses/Unauthorized' },
           404: { $ref: '#/components/responses/NotFound' }
         }
