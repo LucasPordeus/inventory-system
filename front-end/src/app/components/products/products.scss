@@ -8,6 +8,7 @@ main{
 }
 
 .products_container {
+    width: 95%;
     height: fit-content;
     justify-content: space-between;
     margin-top: 3%;
@@ -39,6 +40,7 @@ main{
     display: flex;
     align-items: center;
     gap: 0.35rem;
+    z-index: 1;
 }
 
 .option_btn {
