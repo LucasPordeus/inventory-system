@@ -1,56 +1,84 @@
-mat-form-field{
-  width: 90%;
+:host {
+  display: block;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  margin-left: 8px;
+  overflow: visible;
+}
+
+#language-switcher {
   position: relative;
-  right: 0;
-  float: right;
+  width: 54px;
+  height: 54px;
 }
 
-.lang{
-  font-size: 17px;
-}
-
-::ng-deep .translation_container {
-  .mat-mdc-form-field-flex {
-    background-color: transparent !important;
-    border-radius: 5px 5px 0 0 !important;
-  }
-
-  .mat-mdc-text-field-wrapper {
-    background-color: #ffffffe3 !important;
-    border-radius: 5px 5px 0 0 !important;
-    overflow: hidden;
-    padding-left: 0 !important;
-  }
-
-    
-  .mat-mdc-form-field-infix {
-    padding: 8px 12px !important;
-    min-height: unset !important;
-  }
-
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: #ffffffe3 !important;
-  }
-
-  // texto e ícone da seta 
-  .mat-mdc-select-value,
-  .mat-mdc-select-arrow {
-    color: #000000 !important;
-  }
-}
-
-.flag_icon {
-  width: 20px;
-  height: auto;
-  vertical-align: middle;
-  margin-right: 6px;
-}
-
-mat-select-trigger {
+#lang-toggle {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #6b7280;
+  box-shadow: 0 4px 12px rgba(31, 41, 55, 0.16);
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
 }
 
-::ng-deep .mat-mdc-option .mat-pseudo-checkbox {
-  display: none !important;
+#lang-toggle:hover,
+#lang-toggle:focus-visible {
+  background: #4b55630a;
+}
+
+#lang-toggle:active {
+  transform: scale(0.96);
+}
+
+#lang-toggle svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+#lang-menu {
+  position: absolute;
+  top: 62px;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  min-width: 70px;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(31, 41, 55, 0.18);
+}
+
+.lang-option {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #374151;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lang-option:hover,
+.lang-option:focus-visible,
+.lang-option.active {
+  background: #e5e7eb;
 }

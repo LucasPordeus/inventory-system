@@ -1,27 +1,32 @@
 
-<div class="translation_container">
-  <mat-form-field>
-    <mat-select [(ngModel)]="selectedValue" name="lang" (selectionChange)="selectedLanguage($event)">
-      <mat-select-trigger>
-        @if (selectedValue === 'en') {
-          <img src="/assets/images/united-states-flag.png" alt="USA Flag" class="flag_icon">
-        }
-        @if (selectedValue === 'pt') {
-          <img src="/assets/images/brazil-flag.png" alt="Brazil Flag" class="flag_icon">
-        }
-        {{ getViewValue(selectedValue) }}
-      </mat-select-trigger>
-      @for (lang of langs; track lang) {
-        <mat-option class="lang" [value]="lang.value">
-          @if (lang.value === 'en') {
-            <img src="/assets/images/united-states-flag.png" alt="USA Flag" class="flag_icon">
-          }
-          @if (lang.value === 'pt') {
-            <img src="/assets/images/brazil-flag.png" alt="Brazil Flag" class="flag_icon">
-          }
-          {{lang.viewValue}}
-        </mat-option>
+<div id="language-switcher">
+  <button
+    id="lang-toggle"
+    type="button"
+    aria-label="Selecionar idioma"
+    [attr.aria-expanded]="isOpen"
+    (click)="toggleMenu()"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+    </svg>
+  </button>
+
+  @if (isOpen) {
+    <div id="lang-menu" role="menu" aria-label="Idioma">
+      @for (lang of langs; track lang.value) {
+        <button
+          class="lang-option"
+          [class.active]="selectedValue === lang.value"
+          type="button"
+          role="menuitem"
+          [attr.data-lang]="lang.value"
+          (click)="selectedLanguage(lang.value)"
+        >
+          {{ lang.value === 'pt' ? 'PT' : 'EN' }}
+        </button>
       }
-    </mat-select>
-  </mat-form-field>
+    </div>
+  }
 </div>

@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MatIconModule } from "@angular/material/icon";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSelectChange, MatSelectModule } from "@angular/material/select";
-import { FormsModule } from "@angular/forms";
-
 import { TranslateService } from "@ngx-translate/core";
 
 
@@ -16,7 +11,6 @@ interface Lang {
 @Component({
   selector: "app-translation-selector",
   standalone: true,
-  imports: [MatIconModule, MatFormFieldModule, MatSelectModule, FormsModule],
   templateUrl: "./translation-selector.html",
   styleUrl: "./translation-selector.scss",
 })
@@ -25,6 +19,7 @@ export class TranslationSelector implements OnInit {
   constructor(private translate: TranslateService) {}
 
   selectedValue!: string;
+  isOpen = false;
 
   langs: Lang[] = [
     {value: 'pt', viewValue: 'Portuguese'},
@@ -39,9 +34,15 @@ export class TranslationSelector implements OnInit {
   }
 
 
-  selectedLanguage(event: MatSelectChange) {
-    this.translate.use(event.value);
-    localStorage.setItem('lang', event.value);
+  toggleMenu(): void {
+    this.isOpen = !this.isOpen;
+  }
+
+  selectedLanguage(language: string): void {
+    this.selectedValue = language;
+    this.translate.use(language);
+    localStorage.setItem('lang', language);
+    this.isOpen = false;
   }
 
   getViewValue(value: string): string {

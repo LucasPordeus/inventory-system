@@ -9,7 +9,7 @@ h2{
 mat-toolbar{
     position:fixed;
     top:0;
-    z-index: 2;
+    z-index: 4;
     width: max-content;
     background-color: #291470;
     color: #ffff;
@@ -27,6 +27,7 @@ mat-sidenav-container{
     width: fit-content;
     position: fixed;
     top: 0;
+    z-index: 3;
 
     @media screen and (max-width: 800px){
         width: 80vh;
