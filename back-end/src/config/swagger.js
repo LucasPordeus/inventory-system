@@ -53,14 +53,8 @@ const swaggerSpec = {
           supplier_id: { type: 'integer', example: 1 },
           name: { type: 'string', example: 'Distribuidora Alimentos SA' },
           cnpj: { type: 'string', example: '12.345.678/0001-90' },
-          email: { type: 'string', format: 'email', example: 'contato@dist.com' },
-          phone: { type: 'string', example: '(11) 99999-1234' },
-          address: { type: 'string', example: 'Rua das Palmeiras, 500' },
-          city: { type: 'string', example: 'São Paulo' },
-          state: { type: 'string', example: 'SP' },
-          notes: { type: 'string', example: 'Fornecedor de grãos e cereais' },
-          created_at: { type: 'string', format: 'date-time' },
-          updated_at: { type: 'string', format: 'date-time' }
+          contact: { type: 'string', example: '(92)4453-6758' },
+          category: { type: 'string', example: 'Alimentício' }
         }
       },
       Error: {
