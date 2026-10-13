@@ -662,8 +662,8 @@ const swaggerSpec = {
                 properties: {
                   name: { type: 'string', minLength: 1, maxLength: 150, example: 'Distribuidora Alimentos SA' },
                   cnpj: { type: 'string', maxLength: 20, example: '12.345.678/0001-90' },
-                  contato: { type: 'string', maxLength: 20, example: '(92)4453-6758' },
-                  categoria: { type: 'string', maxLength: 100, example: 'Alimentício' }
+                  contact: { type: 'string', maxLength: 20, example: '(92)4453-6758' },
+                  category: { type: 'string', maxLength: 100, example: 'Alimentício' }
                 }
               }
             }
@@ -718,8 +718,8 @@ const swaggerSpec = {
                 properties: {
                   name: { type: 'string', minLength: 1, maxLength: 150 },
                   cnpj: { type: 'string', maxLength: 20 },
-                  contato: { type: 'string', maxLength: 20 },
-                  categoria: { type: 'string', maxLength: 100 }
+                  contact: { type: 'string', maxLength: 20 },
+                  category: { type: 'string', maxLength: 100 }
                 }
               }
             }
