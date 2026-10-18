@@ -7,9 +7,22 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server.js",
+    "migrate": "node src/database/runMigrations.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "bcrypt": "^5.1.1",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.14.1",
+    "swagger-ui-express": "^5.0.1"
   }
 }

@@ -2,7 +2,7 @@
     {
         "label": "Dashboard",
         "icon": "bar_chart_4_bars",
-        "route": "/dashboard"
+        "route": "/products"
     },
     {
         "label": "Produtos",
@@ -12,7 +12,7 @@
     {
         "label": "Fornecedores",
         "icon": "warehouse",
-        "route": "/suppliers"
+        "route": "http://youtube.com.br"
     },
     {
         "label": "Movimentações",

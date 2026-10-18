@@ -1,0 +1,32 @@
+
+<div id="language-switcher">
+  <button
+    id="lang-toggle"
+    type="button"
+    aria-label="Selecionar idioma"
+    [attr.aria-expanded]="isOpen"
+    (click)="toggleMenu()"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+    </svg>
+  </button>
+
+  @if (isOpen) {
+    <div id="lang-menu" role="menu" aria-label="Idioma">
+      @for (lang of langs; track lang.value) {
+        <button
+          class="lang-option"
+          [class.active]="selectedValue === lang.value"
+          type="button"
+          role="menuitem"
+          [attr.data-lang]="lang.value"
+          (click)="selectedLanguage(lang.value)"
+        >
+          {{ lang.value === 'pt' ? 'PT' : 'EN' }}
+        </button>
+      }
+    </div>
+  }
+</div>
