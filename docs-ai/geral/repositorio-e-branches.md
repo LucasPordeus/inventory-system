@@ -1,4 +1,4 @@
-# 02 — Repositório e branches
+# Repositório e branches
 
 ## Estrutura do repositório (monorepo)
 

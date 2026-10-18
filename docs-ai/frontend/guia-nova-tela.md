@@ -1,4 +1,4 @@
-# 10 — Guia: nova tela no front-end
+# Guia: nova tela no front-end
 
 Exemplo: tela de **Fornecedores** (`/suppliers`). Referência real: `components/products` + `components/product` (branch `products/frontend`).
 

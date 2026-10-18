@@ -1,4 +1,4 @@
-# 07 — Design e telas
+# Design e telas
 
 Protótipos em `assets/design/`. Use-os como referência visual ao criar ou estilizar telas.
 

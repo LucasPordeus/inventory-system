@@ -1,4 +1,4 @@
-# 08 — Autenticação e permissões
+# Autenticação e permissões
 
 O sistema tem **dois níveis** de controle de acesso:
 
@@ -47,6 +47,12 @@ router.get('/:id', selfOrAdminMiddleware, asyncHandler(...));  // admin ou o pr�
 ```
 
 Hoje `products`, `suppliers` e `movements` exigem apenas login (qualquer role pode fazer CRUD). `users` e escrita em `screens` exigem admin.
+
+### Regra definida (ainda não implementada no código)
+
+Cada usuário tem cadastradas as telas que pode usar (`users_screens`). **Ter acesso a uma tela libera tudo nela**: listar, cadastrar, editar e excluir. Não há separação entre leitura e escrita.
+
+Para a API cumprir essa regra, as rotas de cada módulo devem verificar se o usuário tem a tela correspondente: `/products` → tela `Produtos`, `/suppliers` → `Fornecedores`, `/movements` → `Movimentações`, `/users` → `Usuários`. O front também deve bloquear rotas de telas não liberadas.
 
 ### Senhas
 - bcrypt com `BCRYPT_SALT_ROUNDS` (padrão 12); salt guardado em coluna separada.

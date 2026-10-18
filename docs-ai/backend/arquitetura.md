@@ -1,4 +1,4 @@
-# 03 — Arquitetura do back-end
+# Arquitetura do back-end
 
 API REST em **Node.js 20 + Express 5**, **CommonJS** (`require`/`module.exports`), arquitetura em camadas, PostgreSQL via `pg` com SQL puro.
 

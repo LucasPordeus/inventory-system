@@ -1,4 +1,4 @@
-# 09 — Guia: novo módulo (CRUD) no back-end
+# Guia: novo módulo (CRUD) no back-end
 
 Exemplo com um recurso fictício `categories`. Troque os nomes conforme o módulo. Os modelos de referência reais são `product*`, `supplier*` e `movement*`.
 
