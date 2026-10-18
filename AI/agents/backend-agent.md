@@ -40,7 +40,7 @@ back-end/src/
   services/                 -- authService, userService, screenService
   repositories/             -- userRepository, screenRepository, userScreenRepository
   middlewares/               -- auth, admin, validation, error handling
-  database/migrations/      -- 001_init.sql, 002_add_user_role.sql, 003_change_menu_icons.sql
+  database/migrations/      -- 001_init.sql, 002_add_user_role.sql, 010_change_menu_icons.sql
   errors/                   -- appError.js
   utils/                    -- jwtHelper.js, passwordHelper.js
 ```

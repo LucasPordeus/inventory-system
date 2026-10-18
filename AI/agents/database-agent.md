@@ -45,7 +45,7 @@ Agente especializado no design e gerenciamento do banco de dados PostgreSQL do s
 |---------|-----------|
 | `001_init.sql` | Cria tabelas users, screens, users_screens + seed screens |
 | `002_add_user_role.sql` | Adiciona coluna role, define admin por email |
-| `003_change_menu_icons.sql` | Atualiza nomes dos ícones Material |
+| `010_change_menu_icons.sql` | Atualiza nomes dos ícones Material |
 
 ## Convenções
 
