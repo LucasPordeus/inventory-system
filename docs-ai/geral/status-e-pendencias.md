@@ -21,7 +21,7 @@ Situação em **18/10/2026**. Atualize este arquivo quando algo mudar.
 ## A fazer
 
 **Integração**
-- [ ] Juntar as branches `*/backend` em `dev` (resolver conflitos da migration `003` e de `validationSchemas.js`, `routes/index.js`, `swagger.js`).
+- [ ] Juntar as branches `*/backend` em `dev` (resolver conflitos de `validationSchemas.js`, `routes/index.js`, `swagger.js`).
 - [ ] Juntar as branches `*/frontend` em `dev`.
 
 **Back-end**
@@ -50,7 +50,6 @@ Situação em **18/10/2026**. Atualize este arquivo quando algo mudar.
 
 | Problema | Onde |
 |---|---|
-| Duas migrations `003_*` (`003_seed_test_user` × `003_change_menu_icons`) | branches `*/backend` × `products/frontend` |
 | Diferenças entre o diagrama ER e as tabelas (tamanhos, obrigatoriedade, `products.supplier_id` ausente) | ver `backend/banco-de-dados.md` |
 | Typo no nome do arquivo `007_create_supliers.sql` | `suppliers/backend` |
 | Usuário de teste criado duas vezes (migration 003 e `seed.js`) — sem erro, mas redundante | back-end |

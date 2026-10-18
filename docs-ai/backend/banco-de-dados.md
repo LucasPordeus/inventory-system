@@ -75,7 +75,7 @@ Colunas comuns a todas as tabelas do sistema (não existem no diagrama):
 
 Registros inseridos pela migration 001:
 
-| name | icon (001) | icon (003_change_menu_icons*) | redirect |
+| name | icon (001) | icon (010_change_menu_icons*) | redirect |
 |---|---|---|---|
 | Dashboard | `dashboard` | `bar_chart_4_bars` | `/dashboard` |
 | Produtos | `inventory` | `inventory_2` | `/products` |
@@ -83,7 +83,7 @@ Registros inseridos pela migration 001:
 | Movimentações | `movements` | `compare_arrows` | `/movements` |
 | Usuários | `people` | `groups` | `/users` |
 
-\* `003_change_menu_icons.sql` existe **apenas** na branch `products/frontend`. Ela troca os ícones por nomes válidos do Material Icons. Nas branches `*/backend` o número 003 é usado por outra migration (`003_seed_test_user.sql`).
+\* `010_change_menu_icons.sql` existe **apenas** na branch `products/frontend`. Ela troca os ícones por nomes válidos do Material Icons. Antes se chamava `003_change_menu_icons.sql` e foi renumerada porque o `003` já era usado pela `003_seed_test_user.sql` nas branches `*/backend`.
 
 ### 3.3 `users_screens` (diagrama: `usuario_tela`) — migration 001
 
@@ -200,18 +200,15 @@ Valores fixos (seed): `pix`, `boleto`, `credito`, `debito`.
 | 001 | `001_init.sql` | todas com back-end | Cria `users`, `screens`, `users_screens` e insere as 5 telas |
 | 002 | `002_add_user_role.sql` | todas com back-end | Adiciona `users.role` e promove `ADMIN_EMAIL` a admin |
 | 003 | `003_seed_test_user.sql` | `users`, `products`, `suppliers`, `movements` /backend | Cria o usuário `teste@teste.com` com a tela Dashboard |
-| 003 | `003_change_menu_icons.sql` | `products/frontend` | Troca os ícones das telas por nomes do Material Icons |
 | 004 | `004_create_logs_login.sql` | `users/backend` e derivadas | Cria `logs_login` |
 | 005 | `005_create_products.sql` | `products/backend` e derivadas | Cria `products` |
 | 006 | `006_seed_products.sql` | `products/backend` e derivadas | Insere 8 produtos |
 | 007 | `007_create_supliers.sql` | `suppliers/backend` | Cria `suppliers` (o nome do arquivo tem o erro de digitação "supliers") |
 | 008 | `008_seed_suppliers.sql` | `suppliers/backend` | Insere 3 fornecedores |
 | 009 | `009_create_movements.sql` | `movements/backend` | Cria `movements` (era `007`, renumerada para não conflitar com `suppliers`) |
+| 010 | `010_change_menu_icons.sql` | `products/frontend` | Troca os ícones das telas por nomes do Material Icons (era `003`, renumerada para não conflitar com `003_seed_test_user.sql`) |
 
-**Conflitos de numeração ao juntar branches:**
-- `003`: `003_seed_test_user.sql` (backend) × `003_change_menu_icons.sql` (`products/frontend`).
-
-Uma das migrations de cada par precisa ser renumerada para o próximo número livre. As migrations rodam em **ordem alfabética do nome do arquivo**, então quem tem FK precisa vir depois da tabela referenciada.
+Não há mais conflitos de numeração entre as branches. Ao criar uma migration nova, use o próximo número livre considerando **todas** as branches (hoje, `011`). As migrations rodam em **ordem alfabética do nome do arquivo**, então quem tem FK precisa vir depois da tabela referenciada.
 
 ## 6. Como as migrations rodam
 

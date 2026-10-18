@@ -42,7 +42,7 @@ users/backend
           └── movements/backend
 ```
 
-> O conflito de numeração `007` entre `suppliers/backend` e `movements/backend` foi resolvido: a migration de movimentações agora é `009_create_movements.sql`. Ainda há conflito no `003` com a `products/frontend` (ver `backend/banco-de-dados.md`).
+> Conflitos de numeração resolvidos: a migration de movimentações agora é `009_create_movements.sql` (era `007`, igual à de fornecedores) e a de ícones do menu na `products/frontend` agora é `010_change_menu_icons.sql` (era `003`, igual à `003_seed_test_user.sql`). Ver `backend/banco-de-dados.md`.
 
 ## Documentação legada em outras branches
 
