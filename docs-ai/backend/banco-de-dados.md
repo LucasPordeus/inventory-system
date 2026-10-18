@@ -135,7 +135,7 @@ Seed (006): 8 produtos de exemplo (Arroz, Feijão, Açúcar, Óleo, Café, Leite
 Índice: `idx_suppliers_category`.
 Seed (008): Atack (Alimentício), Infostore (Eletrônicos), Concorde (Papelaria).
 
-### 3.7 `movements` (diagrama: `movimentacao`) — migration `007_create_movements.sql` (branch `movements/backend`)
+### 3.7 `movements` (diagrama: `movimentacao`) — migration `009_create_movements.sql` (branch `movements/backend`)
 
 | Coluna | Tipo no sistema | Diagrama | Diferença |
 |---|---|---|---|
@@ -206,10 +206,9 @@ Valores fixos (seed): `pix`, `boleto`, `credito`, `debito`.
 | 006 | `006_seed_products.sql` | `products/backend` e derivadas | Insere 8 produtos |
 | 007 | `007_create_supliers.sql` | `suppliers/backend` | Cria `suppliers` (o nome do arquivo tem o erro de digitação "supliers") |
 | 008 | `008_seed_suppliers.sql` | `suppliers/backend` | Insere 3 fornecedores |
-| 007 | `007_create_movements.sql` | `movements/backend` | Cria `movements` |
+| 009 | `009_create_movements.sql` | `movements/backend` | Cria `movements` (era `007`, renumerada para não conflitar com `suppliers`) |
 
 **Conflitos de numeração ao juntar branches:**
-- `007`: `suppliers/backend` × `movements/backend`.
 - `003`: `003_seed_test_user.sql` (backend) × `003_change_menu_icons.sql` (`products/frontend`).
 
 Uma das migrations de cada par precisa ser renumerada para o próximo número livre. As migrations rodam em **ordem alfabética do nome do arquivo**, então quem tem FK precisa vir depois da tabela referenciada.
