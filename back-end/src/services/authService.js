@@ -1,5 +1,6 @@
 const userRepository = require('../repositories/userRepository');
 const userScreenRepository = require('../repositories/userScreenRepository');
+const loginLogRepository = require('../repositories/loginLogRepository');
 const PasswordHelper = require('../utils/passwordHelper');
 const JwtHelper = require('../utils/jwtHelper');
 const AppError = require('../errors/appError');
@@ -18,6 +19,7 @@ class AuthService {
 
     const token = JwtHelper.sign({ userId: user.user_id, email: user.email, role: user.role });
     const screens = await userScreenRepository.findScreensByUserId(user.user_id);
+    await loginLogRepository.insert(user.user_id);
 
     return {
       token,

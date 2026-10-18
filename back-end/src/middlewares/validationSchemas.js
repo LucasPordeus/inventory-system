@@ -12,6 +12,7 @@ const createUserSchema = Joi.object({
   name: Joi.string().min(2).max(150).required(),
   email: Joi.string().email().max(255).required(),
   password: passwordRule,
+  role: Joi.string().valid('admin', 'user').default('user'),
   screenIds: Joi.array().items(Joi.number().integer().positive()).default([])
 });
 
@@ -41,11 +42,49 @@ const updateScreenSchema = Joi.object({
   redirect: Joi.string().min(1).max(255)
 }).min(1);
 
+const createProductSchema = Joi.object({
+  name: Joi.string().min(1).max(150).required(),
+  quantity: Joi.number().integer().min(0).required(),
+  unit: Joi.string().max(20).allow(null, ''),
+  unitPrice: Joi.number().precision(2).min(0).allow(null),
+  category: Joi.string().max(100).allow(null, ''),
+  expirationDate: Joi.date().iso().allow(null),
+  productImage: Joi.string().allow(null, '')
+});
+
+const updateProductSchema = Joi.object({
+  name: Joi.string().min(1).max(150),
+  quantity: Joi.number().integer().min(0),
+  unit: Joi.string().max(20).allow(null, ''),
+  unitPrice: Joi.number().precision(2).min(0).allow(null),
+  category: Joi.string().max(100).allow(null, ''),
+  expirationDate: Joi.date().iso().allow(null),
+  productImage: Joi.string().allow(null, '')
+}).min(1);
+
+const createSupplierSchema = Joi.object({
+  name: Joi.string().min(1).max(150).required(),
+  contact: Joi.string().max(20).required(),
+  cnpj: Joi.string().max(20).required(),
+  category: Joi.string().max(100).required()
+});
+
+const updateSupplierSchema = Joi.object({
+  name: Joi.string().min(1).max(150),
+  contact: Joi.string().max(20),
+  cnpj: Joi.string().max(20),
+  category: Joi.string().max(100)
+}).min(1);
+
 module.exports = {
   createUserSchema,
   updateUserSchema,
   setUserScreensSchema,
   loginSchema,
   createScreenSchema,
-  updateScreenSchema
+  updateScreenSchema,
+  createProductSchema,
+  updateProductSchema,
+  createSupplierSchema,
+  updateSupplierSchema
 };

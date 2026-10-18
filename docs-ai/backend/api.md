@@ -1,4 +1,4 @@
-# 04 — API REST (endpoints)
+# API REST (endpoints)
 
 Base: `http://localhost:3000/api`. Todas as respostas são JSON. Endpoints protegidos exigem:
 

@@ -1,4 +1,4 @@
-# 01 — Visão geral
+# Visão geral
 
 ## O que é
 

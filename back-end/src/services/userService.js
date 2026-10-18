@@ -4,7 +4,7 @@ const PasswordHelper = require('../utils/passwordHelper');
 const AppError = require('../errors/appError');
 
 class UserService {
-  async createUser({ name, email, password, screenIds = [] }) {
+  async createUser({ name, email, password, role = 'user', screenIds = [] }) {
     const existing = await userRepository.findByEmail(email);
     if (existing) {
       throw new AppError('Email already registered', 409);
@@ -17,7 +17,8 @@ class UserService {
       name,
       email,
       password: hashedPassword,
-      salt
+      salt,
+      role
     });
 
     if (screenIds.length > 0) {

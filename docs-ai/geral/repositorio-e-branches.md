@@ -1,4 +1,4 @@
-# 02 — Repositório e branches
+# Repositório e branches
 
 ## Estrutura do repositório (monorepo)
 
@@ -31,7 +31,7 @@ Front e back são projetos independentes, cada um com seu `package.json` e `node
 | `users/backend` | Back-end base: Express em camadas, Docker, migrations 001–004, auth, usuários, telas, logs de login, Swagger, `ARCHITECTURE.md`. |
 | `products/backend` | `users/backend` + CRUD de produtos (migrations 005–006). |
 | `suppliers/backend` | `products/backend` + CRUD de fornecedores (migrations `007_create_supliers.sql`, `008_seed_suppliers.sql`). |
-| `movements/backend` | `products/backend` + CRUD de movimentações (migration `007_create_movements.sql`). |
+| `movements/backend` | `products/backend` + CRUD de movimentações (migration `009_create_movements.sql`, renumerada de `007` para não conflitar com a de fornecedores). |
 
 Hierarquia de origem do back-end:
 
@@ -42,7 +42,7 @@ users/backend
           └── movements/backend
 ```
 
-> ⚠️ `suppliers/backend` e `movements/backend` usam **o mesmo número de migration `007`**. Ao juntar as duas, renumere uma delas (ver `backend/banco-de-dados.md`).
+> Conflitos de numeração resolvidos: a migration de movimentações agora é `009_create_movements.sql` (era `007`, igual à de fornecedores) e a de ícones do menu na `products/frontend` agora é `010_change_menu_icons.sql` (era `003`, igual à `003_seed_test_user.sql`). Ver `backend/banco-de-dados.md`.
 
 ## Documentação legada em outras branches
 
