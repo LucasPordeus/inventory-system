@@ -4,6 +4,7 @@ const userRoutes = require('./userRoutes');
 const screenRoutes = require('./screenRoutes');
 const productRoutes = require('./productRoutes');
 const supplierRoutes = require('./supplierRoutes');
+const movementRoutes = require('./movementRoutes');
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/users', userRoutes);
 router.use('/screens', screenRoutes);
 router.use('/products', productRoutes);
 router.use('/suppliers', supplierRoutes);
+router.use('/movements', movementRoutes);
 
 module.exports = router;
