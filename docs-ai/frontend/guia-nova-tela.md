@@ -1,6 +1,6 @@
 # Guia: nova tela no front-end
 
-Exemplo: tela de **Fornecedores** (`/suppliers`). Referência real: `components/products` + `components/product` (branch `products/frontend`).
+Exemplo: tela de **Fornecedores** (`/suppliers`). Referência real: `components/products` + `components/product` (na `dev`).
 
 ## Checklist
 

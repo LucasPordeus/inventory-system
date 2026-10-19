@@ -1,6 +1,6 @@
 # Arquitetura do front-end
 
-Angular **21** com **standalone components** (sem NgModules), TypeScript 5.9, Angular Material 21, SCSS, `@ngx-translate`, testes com Vitest. A versão mais completa está na branch `products/frontend`.
+Angular **21** com **standalone components** (sem NgModules), TypeScript 5.9, Angular Material 21, SCSS, `@ngx-translate`, testes com Vitest. Código integrado na `dev` (vindo da `products/frontend`, com o menu opção 2).
 
 ## Estrutura (`front-end/`)
 

@@ -21,8 +21,8 @@ Situação em **18/10/2026**. Atualize este arquivo quando algo mudar.
 ## A fazer
 
 **Integração**
-- [ ] Juntar as branches `*/backend` em `dev` (resolver conflitos de `validationSchemas.js`, `routes/index.js`, `swagger.js`).
-- [ ] Juntar as branches `*/frontend` em `dev`.
+- [x] Juntar as branches `*/backend` em `dev` (feito em 18/10/2026).
+- [x] Juntar as branches `*/frontend` em `dev` usando o menu opção 2 (feito em 18/10/2026).
 
 **Back-end**
 - [ ] Autorização por tela: a API deve checar `users_screens` em cada módulo; ter a tela libera o CRUD completo (ver `geral/autenticacao-e-permissoes.md`).
@@ -57,5 +57,3 @@ Situação em **18/10/2026**. Atualize este arquivo quando algo mudar.
 | Body limitado a 10kb — imagem base64 em `product_image` vai falhar | `app.js` |
 | README antigo diz que `POST /users` é público; no código exige admin | `back-end/README.md` |
 | Chave de tradução `errorr` (typo) | `public/translation/*.json` |
-| `README.md` do back-end na `dev` é o README do Express, não do projeto | `dev` |
-| Docs em `AI/` (branch `products/frontend`) descrevem `try/catch` em controllers e registro de rotas em `app.js` — incorreto | `products/frontend` |
